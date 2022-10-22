@@ -3,6 +3,7 @@
         <div class="col-md-2 card bg-white"
              style="border-bottom-color: rgba(0, 0, 0, 0.72); border-bottom-style: solid; border-bottom-width: 1px;
                     border-radius: 0; padding: 0.5rem 0.5rem 0 0 !important;">
+            <a href="#">
             <div class="card-body" onclick="read_news(this)">
                 <h6>{{ news_list[0].title }}</h6>
                 {% for line in news_list[0].lines %}
@@ -10,11 +11,13 @@
                 {% endfor %}
 {#                <p class="news-preview">{{ news_list[0].content }}</p>#}
             </div>
+            </a>
         </div>
         <div class="col-md-2 card bg-white"
              style="border-right-color: rgba(0, 0, 0, 0.72); border-right-style: solid; border-right-width: 1px;
                     border-bottom-color: rgba(0, 0, 0, 0.72); border-bottom-style: solid; border-bottom-width: 1px;
                     border-radius: 0; padding: 0.5rem 0.5rem 0 0 !important;">
+            <a href="#">
                 <div class="card-body" onclick="read_news(this)">
                     <h6>{{ news_list[1].title }}</h6>
                     {% for line in news_list[1].lines %}
@@ -22,6 +25,7 @@
                     {% endfor %}
 {#                    <p class="news-preview">{{ news_list[1].content }}</p>#}
                 </div>
+            </a>
         </div>
         <div class="col-md-6 card bg-white"
              style="border-right-color: rgba(0, 0, 0, 0.72); border-right-style: solid; border-right-width: 1px;
@@ -30,6 +34,7 @@
             <div class="card bg-white" style="padding-top: 0 !important;
                     border-bottom-color: rgba(0, 0, 0, 0.72);
                     border-bottom-style: solid; border-bottom-width: 1px; border-radius: 0">
+                <a href="#">
                     <div class="card-body" onclick="read_news(this)">
                         <h6>{{ news_list[2].title }}</h6>
                         {% for line in news_list[2].lines %}
@@ -37,10 +42,12 @@
                         {% endfor %}
 {#                        <p class="news-preview mid-news">{{ news_list[2].content }}</p>#}
                     </div>
+                </a>
             </div>
             <div class="card bg-white" style="border-bottom-color: rgba(0, 0, 0, 0.72);
                     border-bottom-style: solid; border-bottom-width: 1px; border-radius: 0;
                     padding-top: 0 !important;">
+                <a href="#">
                     <div class="card-body" onclick="read_news(this)">
                         <h6>{{ news_list[3].title }}</h6>
                         {% for line in news_list[3].lines %}
@@ -48,8 +55,10 @@
                         {% endfor %}
 {#                        <p class="news-preview mid-news">{{ news_list[3].content }}</p>#}
                     </div>
+                </a>
             </div>
             <div class="card bg-white" style="padding-top: 0 !important;">
+                <a href="#">
                     <div class="card-body" onclick="read_news(this)">
                         <h6>{{ news_list[4].title }}</h6>
                         {% for line in news_list[4].lines %}
@@ -57,11 +66,13 @@
                         {% endfor %}
 {#                        <p class="news-preview mid-news">{{ news_list[4].content }}</p>#}
                     </div>
+                </a>
             </div>
         </div>
         <div class="col-md-2 card bg-white" style="border-bottom-color: rgba(0, 0, 0, 0.72);
                     border-bottom-style: solid; border-bottom-width: 1px; border-radius: 0;
                     padding: 0.5rem 0 0 0.5rem !important;">
+            <a href="#">
                 <div class="card-body" onclick="read_news(this)">
                     <h6>{{ news_list[5].title }}</h6>
                     {% for line in news_list[5].lines %}
@@ -69,10 +80,12 @@
                     {% endfor %}
 {#                    <p class="news-preview">{{ news_list[5].content }}</p>#}
                 </div>
+            </a>
         </div>
     </div>
     <div class="card-group">
         <div class="card bg-white col-md-6" style="padding: 0.5rem 0.5rem 0 0 !important;">
+            <a href="#">
                 <div class="card-body" onclick="read_news(this)">
                     <h6>{{ news_list[6].title }}</h6>
                     {% for line in news_list[6].lines %}
@@ -80,8 +93,10 @@
                     {% endfor %}
 {#                    <p class="news-preview">{{ news_list[6].content }}</p>#}
                 </div>
+            </a>
         </div>
         <div class="card bg-white col-md-6" style="padding: 0.5rem 0.5rem 0 0 !important;">
+            <a href="#">
                 <div class="card-body" onclick="read_news(this)">
                     <h6>{{ news_list[7].title }}</h6>
                     {% for line in news_list[7].lines %}
@@ -89,6 +104,7 @@
                     {% endfor %}
 {#                    <p class="news-preview">{{ news_list[7].content }}</p>#}
                 </div>
+            </a>
         </div>
     </div>
 </div>

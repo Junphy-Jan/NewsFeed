@@ -1,0 +1,100 @@
+/*#container{*/
+/*    -webkit-column-width:400px; !*Safari and Chrome*!*/
+/*    -moz-column-width:400px; !*Firefox*!*/
+/*    -o-column-width:400px; !*Opera*!*/
+/*    -ms-column-width:400px; !*IE*!*/
+/*    column-width:400px;*/
+/*}*/
+/*#container>div{*/
+/*    width:400px; !*宽度根据实际情况调节，应与上面一致*!*/
+/*    overflow:auto; !*防止内容溢出导致布局错位*!*/
+/*}*/
+/*main.container-fluid {*/
+/*    width: 80%;*/
+/*}*/
+body{
+    line-height: 1;
+}
+h5{
+    line-height: 1;
+    margin-bottom: 0.15rem;
+}
+/*#newspaper_page{*/
+/*    margin-left: 100px;*/
+/*}*/
+/*#news_detail{*/
+/*    margin-right: 100px;*/
+/*}*/
+.card {
+    border: unset;
+}
+.col-md-1{
+    max-width: 8.2%;
+}
+.col-md-2{
+    max-width: 16%;
+}
+.col-md-3{
+    max-width: 26%;
+}
+.offset-md-1 {
+    margin-left: 6%;
+}
+
+/*.col-md-3{*/
+/*    max-width: 30%;*/
+/*}*/
+.card-body{
+    padding: 0;
+}
+.side_news{
+    margin-top: 30px;
+}
+
+.card-preview{
+
+}
+
+a{
+    color: unset;
+    text-decoration: none;
+}
+a:hover{ text-decoration:none}
+
+/*small.text-muted{*/
+/*    white-space:pre-line;*/
+/*    font-size: 80%;*/
+/*    color: transparent !important;*/
+/*    text-shadow: 0 0 2px rgb(0 0 0 / 55%);*/
+/*}*/
+.news-overview{
+    font-size: 60%;
+    line-height: 0.8;
+    white-space: pre-line;
+    margin-bottom: 0.3rem;
+    margin-top: 4px;
+}
+.mid-news{
+    margin-bottom: 0.3rem;
+}
+.news-overview-title{
+    font-weight: 600;
+}
+p.news-preview{
+    white-space:pre-line;
+    font-size: 30% !important;
+    line-height: 0.8;
+    color: transparent !important;
+    text-shadow: 0 0 0 rgb(0 0 0 / 78%);
+}
+
+#news-detail-title{
+    font-weight: 700
+}
+p.news_content{
+    white-space:pre-line;
+    line-height: 1.5;
+    margin-top: 30px;
+    font-weight: 500;
+    font-size: x-large;
+}

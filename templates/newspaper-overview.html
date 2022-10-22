@@ -1,0 +1,103 @@
+<div class="col-md-12">
+    <div class="card-group">
+        <div class="col-md-1 offset-md-3 card bg-white"
+             style="border-bottom-color: rgba(0, 0, 0, 0.72); border-bottom-style: solid; border-bottom-width: 1px;
+                    border-radius: 0; padding: 0.5rem 1rem 0 0 !important;">
+            <a href="newspaper_read/0">
+                <div class="card-body">
+                    <h5 class="news-overview-title">{{ news_list[0].title }}</h5>
+                    {% for line in news_list[0].lines %}
+                        <p class="news-overview">{{ line }}</p>
+                    {% endfor %}
+                </div>
+
+            </a>
+        </div>
+        <div class="col-md-1 card bg-white"
+             style="border-right-color: rgba(0, 0, 0, 0.72); border-right-style: solid; border-right-width: 1px;
+                    border-bottom-color: rgba(0, 0, 0, 0.72); border-bottom-style: solid; border-bottom-width: 1px;
+                    border-radius: 0; padding: 0.5rem 1rem 0 0 !important;">
+            <a href="newspaper_read/1">
+                <div class="card-body">
+                    <h5 class="news-overview-title">{{ news_list[1].title }}</h5>
+                    {% for line in news_list[1].lines %}
+                        <p class="news-overview">{{ line }}</p>
+                    {% endfor %}
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 card bg-white"
+             style="border-right-color: rgba(0, 0, 0, 0.72); border-right-style: solid; border-right-width: 1px;
+                    border-bottom-color: rgba(0, 0, 0, 0.72); border-bottom-style: solid; border-bottom-width: 1px;
+                    border-radius: 0; margin-left: 5px; padding: 0.5rem 1rem 0 0 !important;">
+            <div class="card bg-white" style="padding-top: 0 !important;
+                    border-bottom-color: rgba(0, 0, 0, 0.72);
+                    border-bottom-style: solid; border-bottom-width: 1px; border-radius: 0">
+                <a href="newspaper_read/2">
+                    <div class="card-body">
+                        <h5 class="news-overview-title">{{ news_list[2].title }}</h5>
+                        {% for line in news_list[2].lines %}
+                            <p class="news-overview">{{ line }}</p>
+                        {% endfor %}
+                    </div>
+                </a>
+            </div>
+            <div class="card bg-white" style="border-bottom-color: rgba(0, 0, 0, 0.72);
+                    border-bottom-style: solid; border-bottom-width: 1px; border-radius: 0;
+                    padding-top: 0 !important;">
+                <a href="newspaper_read/3">
+                    <div class="card-body">
+                        <h5 class="news-overview-title">{{ news_list[3].title }}</h5>
+                        {% for line in news_list[3].lines %}
+                            <p class="news-overview">{{ line }}</p>
+                        {% endfor %}
+                    </div>
+                </a>
+            </div>
+            <div class="card bg-white" style="padding-top: 0 !important;">
+                <a href="newspaper_read/4">
+                    <div class="card-body">
+                        <h5 class="news-overview-title">{{ news_list[4].title }}</h5>
+                        {% for line in news_list[4].lines %}
+                            <p class="news-overview">{{ line }}</p>
+                        {% endfor %}
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-1 card bg-white" style="border-bottom-color: rgba(0, 0, 0, 0.72);
+                    border-bottom-style: solid; border-bottom-width: 1px; border-radius: 0;
+                    padding: 0.5rem 0 0 1rem !important;">
+            <a href="newspaper_read/5">
+                <div class="card-body">
+                    <h5 class="news-overview-title">{{ news_list[5].title }}</h5>
+                    {% for line in news_list[5].lines %}
+                        <p class="news-overview">{{ line }}</p>
+                    {% endfor %}
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="card-group">
+        <div class="card bg-white col-md-3 offset-md-3" style="padding: 0.5rem 1rem 0 0 !important;">
+            <a href="newspaper_read/6">
+                <div class="card-body">
+                    <h5 class="news-overview-title">{{ news_list[6].title }}</h5>
+                    {% for line in news_list[6].lines %}
+                        <p class="news-overview">{{ line }}</p>
+                    {% endfor %}
+                </div>
+            </a>
+        </div>
+        <div class="card bg-white col-md-3" style="padding: 0.5rem 1rem 0 0 !important;">
+            <a href="newspaper_read/7">
+                <div class="card-body">
+                    <h5 class="news-overview-title">{{ news_list[7].title }}</h5>
+                    {% for line in news_list[7].lines %}
+                        <p class="news-overview">{{ line }}</p>
+                    {% endfor %}
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

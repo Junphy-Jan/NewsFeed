@@ -1,0 +1,70 @@
+<div class="col-md-12">
+    <div class="card-group">
+        <div class="col-md-2 card bg-white"
+             style="border-bottom-color: rgba(0, 0, 0, 0.72); border-bottom-style: solid; border-bottom-width: 1px;
+                    border-radius: 0; padding: 1rem 1rem 0 0 !important;">
+            <div class="card-body" onclick="read_news(this)">
+                <h5>{{ news_list[0].title }}</h5>
+                <p class="news-preview">{{ news_list[0].content }}</p>
+            </div>
+        </div>
+        <div class="col-md-2 card bg-white"
+             style="border-right-color: rgba(0, 0, 0, 0.72); border-right-style: solid; border-right-width: 1px;
+                    border-bottom-color: rgba(0, 0, 0, 0.72); border-bottom-style: solid; border-bottom-width: 1px;
+                    border-radius: 0; padding: 1rem 1rem 0 0 !important;">
+                <div class="card-body" onclick="read_news(this)">
+                    <h5>{{ news_list[1].title }}</h5>
+                    <p class="news-preview">{{ news_list[1].content }}</p>
+                </div>
+        </div>
+        <div class="col-md-6 card bg-white"
+             style="border-right-color: rgba(0, 0, 0, 0.72); border-right-style: solid; border-right-width: 1px;
+                    border-bottom-color: rgba(0, 0, 0, 0.72); border-bottom-style: solid; border-bottom-width: 1px;
+                    border-radius: 0; margin-left: 5px; padding: 1rem 1rem 0 0 !important;">
+            <div class="card bg-white" style="padding-top: 0 !important;
+                    border-bottom-color: rgba(0, 0, 0, 0.72);
+                    border-bottom-style: solid; border-bottom-width: 1px; border-radius: 0">
+                    <div class="card-body" onclick="read_news(this)">
+                        <h5>{{ news_list[2].title }}</h5>
+                        <p class="news-preview mid-news">{{ news_list[2].content }}</p>
+                    </div>
+            </div>
+            <div class="card bg-white" style="border-bottom-color: rgba(0, 0, 0, 0.72);
+                    border-bottom-style: solid; border-bottom-width: 1px; border-radius: 0;
+                    padding-top: 0 !important;">
+                    <div class="card-body" onclick="read_news(this)">
+                        <h5>{{ news_list[3].title }}</h5>
+                        <p class="news-preview mid-news">{{ news_list[3].content }}</p>
+                    </div>
+            </div>
+            <div class="card bg-white" style="padding-top: 0 !important;">
+                    <div class="card-body" onclick="read_news(this)">
+                        <h5>{{ news_list[4].title }}</h5>
+                        <p class="news-preview mid-news">{{ news_list[4].content }}</p>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-2 card bg-white" style="border-bottom-color: rgba(0, 0, 0, 0.72);
+                    border-bottom-style: solid; border-bottom-width: 1px; border-radius: 0;
+                    padding: 1rem 0 0 1rem !important;">
+                <div class="card-body" onclick="read_news(this)">
+                    <h5>{{ news_list[5].title }}</h5>
+                    <p class="news-preview">{{ news_list[5].content }}</p>
+                </div>
+        </div>
+    </div>
+    <div class="card-group">
+        <div class="card bg-white col-md-6" style="padding: 1rem 1rem 0 0 !important;">
+                <div class="card-body" onclick="read_news(this)">
+                    <h5>{{ news_list[6].title }}</h5>
+                    <p class="news-preview">{{ news_list[6].content }}</p>
+                </div>
+        </div>
+        <div class="card bg-white col-md-6" style="padding: 1rem 1rem 0 0 !important;">
+                <div class="card-body" onclick="read_news(this)">
+                    <h5>{{ news_list[7].title }}</h5>
+                    <p class="news-preview">{{ news_list[7].content }}</p>
+                </div>
+        </div>
+    </div>
+</div>

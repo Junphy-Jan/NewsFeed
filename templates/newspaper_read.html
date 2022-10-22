@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <script>
+        function read_news(id) {
+            document.getElementById("news-detail-title").innerHTML = id.children[0].textContent;
+            document.getElementById("news-detail-content").innerHTML = id.children[1].textContent;
+        }
+    </script>
+    <div class="row">
+        <div class="col-md-5 offset-md-1" id="newspaper_page">
+            {% include 'newspaper-preview-left.html' %}
+{#            <div class="row">#}
+{#                <div class="col-md-6" style="padding-top: 10px;">#}
+{#                    {% for news in news_list[:4] %}#}
+{#                        <div class="card bg-white card-preview">#}
+{#                            <div class="card-body" onclick="read_news(this)">#}
+{#                                <h5>{{ news.title }}</h5>#}
+                                {#                                <p class="card-text"><small class="text-muted text-preview">{{ news.content }}</small></p>#}
+{#                                <p class="news-preview">{{ news.content }}</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#                <div class="col-md-6" style="padding-top: 10px;">#}
+{#                    {% for news in news_list[4:] %}#}
+{#                        <div class="card bg-white">#}
+{#                            <div class="card-body" onclick="read_news(this)">#}
+{#                                <h5>{{ news.title }}</h5>#}
+                                {#                                <p class="card-text"><small class="text-muted text-preview">{{ news.content }}</small></p>#}
+{#                                <p class="news-preview">{{ news.content }}</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#            </div>#}
+        </div>
+        <div class="col-md-5" id="news_detail">
+            <div class="card p-3 bg-white">
+                <div class="card-body">
+                    <h3 id="news-detail-title">{{ news_list[news_idx].title }}</h3>
+                    <p class="news_content" id="news-detail-content">{{ news_list[news_idx].content }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

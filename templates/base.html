@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% block head %}
+        <!-- CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+        <!-- jQuery and JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+        <script src="https://cdn.socket.io/4.5.3/socket.io.min.js"
+                integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi"
+                crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+        <title>{% block title %}{% endblock %}news page</title>
+    {% endblock %}
+</head>
+<body>
+<script>
+    // 对document.hidden做前缀处理
+    function getHiddenProp(){
+        var prefixes = ['webkit','moz','ms','o'];
+
+        // if 'hidden' is natively supported just return it
+        if ('hidden' in document) return 'hidden';
+
+        // otherwise loop over all the known prefixes until we find one
+        for (var i = 0; i < prefixes.length; i++){
+            if ((prefixes[i] + 'Hidden') in document)
+                return prefixes[i] + 'Hidden';
+        }
+
+        // otherwise it's not supported
+        return null;
+    };
+
+    // 获取document.visibilityState属性
+    function getVisibilityState() {
+        var prefixes = ['webkit', 'moz', 'ms', 'o'];
+        if ('visibilityState' in document) return 'visibilityState';
+        for (var i = 0; i < prefixes.length; i++) {
+            if ((prefixes[i] + 'VisibilityState') in document)
+                return prefixes[i] + 'VisibilityState';
+        }
+        // otherwise it's not supported
+        return null;
+    };
+
+    // 给document添加事件
+    var visProp = getHiddenProp();
+    if (visProp) {
+        var evtname = visProp.replace(/[H|h]idden/, '') + 'visibilitychange';
+        document.addEventListener(evtname, function () {
+            document.title = document[getVisibilityState()]+"状态";
+            if (document[getVisibilityState()] == 'visible') {
+                console.log('回来了');
+            }else{
+                console.log('离开了');
+            }
+        },false);
+    };
+</script>
+<nav class="navbar navbar-expand-lg navbar-light shadow mb-5 bg-white rounded"
+     style="background-color: #e3f2fd; margin-bottom: 5px !important;">
+    <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarColor03">
+        <h3>Daily News</h3>
+    </div>
+</nav>
+<div id="content">{% block content %}{% endblock %}</div>
+
+</body>
+</html>

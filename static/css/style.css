@@ -15,9 +15,10 @@
 body{
     line-height: 1;
 }
-h5{
+h5, h6{
     line-height: 1;
     margin-bottom: 0.15rem;
+    font-weight: 600;
 }
 /*#newspaper_page{*/
 /*    margin-left: 100px;*/
@@ -32,10 +33,13 @@ h5{
     max-width: 8.2%;
 }
 .col-md-2{
-    max-width: 16%;
+    max-width: 17%;
 }
 .col-md-3{
     max-width: 26%;
+}
+.col-md-6{
+    max-width: 48%;
 }
 .offset-md-1 {
     margin-left: 6%;
@@ -84,6 +88,7 @@ p.news-preview{
     white-space:pre-line;
     font-size: 30% !important;
     line-height: 0.8;
+    margin-bottom: 0.1rem;
     color: transparent !important;
     text-shadow: 0 0 0 rgb(0 0 0 / 78%);
 }
@@ -91,7 +96,7 @@ p.news-preview{
 #news-detail-title{
     font-weight: 700
 }
-p.news_content{
+p.news-detail-lines{
     white-space:pre-line;
     line-height: 1.5;
     margin-top: 30px;

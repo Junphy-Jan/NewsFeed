@@ -40,16 +40,16 @@ def shuffle_news(news_list):
 # @app.route('/')
 # def hello_world():  # put application's code here
 #     return 'Hello World!'
-@app.route('/<uid>')
-def index(uid):
-    global all_news_list
+@app.route('/newspaper/<uid>')
+def newspaper(uid):
+    # global all_news_list
     print("user: {}".format(escape(uid)))
     random.shuffle(all_news_list)
     # all_news_list = shuffle_news(all_news_list)
     return render_template('newspaper.html', news_list=all_news_list)
 
 
-@app.route('/newspaper_read/<news_idx>')
+@app.route('/newspaper/newspaper_read/<news_idx>')
 def read_news(news_idx):
     news_idx = int(news_idx)
     print(news_idx)

@@ -5,7 +5,20 @@
     <script>
         function read_news(id) {
             document.getElementById("news-detail-title").innerHTML = id.children[0].textContent;
-            document.getElementById("news-detail-content").innerHTML = id.children[1].textContent;
+            {#删除原有元素#}
+            let news_content = document.getElementById("news-detail-content");
+            let content_lines = document.getElementsByClassName("news-detail-lines");
+            for (let i= content_lines.length - 1; i >= 0; i--){
+                news_content.removeChild(content_lines[i])
+            }
+            {# 添加点击元素 #}
+            for (let i = 1; i < id.children.length; i++){
+                let detail_line = document.createElement("p");
+                detail_line.setAttribute("class", "news-detail-lines");
+                detail_line.innerHTML= id.children[i].textContent;
+                news_content.appendChild(detail_line);
+            }
+            {#document.getElementById("news-detail-content").innerHTML = id.children[1].textContent;#}
         }
     </script>
     <div class="row">
@@ -38,9 +51,13 @@
         </div>
         <div class="col-md-5" id="news_detail">
             <div class="card p-3 bg-white">
-                <div class="card-body">
+                <div class="card-body" id="news-detail">
                     <h3 id="news-detail-title">{{ news_list[news_idx].title }}</h3>
-                    <p class="news_content" id="news-detail-content">{{ news_list[news_idx].content }}</p>
+                    <div id="news-detail-content">
+                    {% for line in news_list[news_idx].lines %}
+                        <p class="news-detail-lines">{{ line }}</p>
+                    {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

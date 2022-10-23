@@ -5,6 +5,8 @@ import random
 from flask import Flask, render_template
 from markupsafe import escape
 
+from newsFeedUtils.loggerHelper import logger
+
 app = Flask(__name__)
 
 
@@ -43,7 +45,7 @@ def shuffle_news(news_list):
 @app.route('/newspaper/<uid>')
 def newspaper(uid):
     # global all_news_list
-    print("user: {}".format(escape(uid)))
+    logger.info("user: {}".format(escape(uid)))
     random.shuffle(all_news_list)
     # all_news_list = shuffle_news(all_news_list)
     return render_template('newspaper.html', news_list=all_news_list)
@@ -52,7 +54,6 @@ def newspaper(uid):
 @app.route('/newspaper/newspaper_read/<news_idx>')
 def read_news(news_idx):
     news_idx = int(news_idx)
-    print(news_idx)
     return render_template('newspaper_read.html', news_idx=news_idx, news_list=all_news_list)
 
 

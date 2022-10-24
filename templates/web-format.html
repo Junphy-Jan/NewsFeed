@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row" style="margin-top: 2%">
+        <div class="col-md-5 offset-md-2 card bg-white web-news-left">
+            <div class="card bg-white">
+                <a href="web_read/0">
+                    <div class="card-body">
+                        <h4 class="web-news-title">{{ news_list[0].title }}</h4>
+                        {% for line in news_list[0].lines %}
+                            <p class="web-news-overview">{{ line }}</p>
+                        {% endfor %}
+                    </div>
+                </a>
+            </div>
+            <hr class="hr1"/>
+            <div class="card bg-white">
+                <a href="web_read/0">
+                    <div class="card-body">
+                        <h4 class="web-news-title">{{ news_list[1].title }}</h4>
+                        {% for line in news_list[1].lines %}
+                            <p class="web-news-overview">{{ line }}</p>
+                        {% endfor %}
+                    </div>
+                </a>
+            </div>
+            <hr class="hr2"/>
+            <div class="card bg-white">
+                <a href="web_read/0">
+                    <div class="card-body">
+                        <h4 class="web-news-title">{{ news_list[2].title }}</h4>
+                        {% for line in news_list[2].lines %}
+                            <p class="web-news-overview">{{ line }}</p>
+                        {% endfor %}
+                    </div>
+                </a>
+            </div>
+            <hr class="hr3"/>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card bg-white h-100">
+                        <div class="card-body">
+                            <h4 class="web-news-title">{{ news_list[3].title }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 1px; background: lightgray; margin-top: 8%"></div>
+                <div class="col-md-6">
+                    <div class="card bg-white h-100">
+                        <div class="card-body">
+                            <h4 class="web-news-title">{{ news_list[4].title }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card bg-white h-100">
+                        <div class="card-body">
+                            {% for line in news_list[3].lines %}
+                                <p class="web-news-overview">{{ line }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 1px; background: lightgray; margin-bottom: 8%"></div>
+                <div class="col-md-6">
+                    <div class="card bg-white h-100">
+                        <div class="card-body">
+                            {% for line in news_list[4].lines %}
+                                <p class="web-news-overview">{{ line }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 1px; background: lightgray;"></div>
+        <div class="col-md-3">
+            <div class="card bg-white web-news-right">
+                <a href="web_read/0">
+                    <div class="card-body">
+                        <h4 class="web-news-title-right">{{ news_list[5].title }}</h4>
+                        {% for line in news_list[5].lines %}
+                            <p class="web-news-overview-right">{{ line }}</p>
+                        {% endfor %}
+                    </div>
+                </a>
+            </div>
+            <div class="card bg-white web-news-right">
+                <a href="web_read/0">
+                    <div class="card-body">
+                        <h4 class="web-news-title-right">{{ news_list[6].title }}</h4>
+                        {% for line in news_list[6].lines %}
+                            <p class="web-news-overview-right">{{ line }}</p>
+                        {% endfor %}
+                    </div>
+                </a>
+            </div>
+            <div class="card bg-white web-news-right">
+                <a href="web_read/0">
+                    <div class="card-body">
+                        <h4 class="web-news-title-right">{{ news_list[7].title }}</h4>
+                        {% for line in news_list[7].lines %}
+                            <p class="web-news-overview-right">{{ line }}</p>
+                        {% endfor %}
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

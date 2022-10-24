@@ -12,22 +12,33 @@ app = Flask(__name__)
 
 def load_news():
     print(os.getcwd())
-    news_relative_path = "static/news/"
-    news_list = []
-    news_files = os.listdir(news_relative_path)
-    news_files.sort()
-    for file_name in news_files:
-        with open(os.path.join(news_relative_path, file_name), "r", encoding="utf-8") as f:
+    paper_news_relative_path = "static/news/paper_version"
+    web_news_relative_path = "static/news/web_version"
+    paper_news_list = []
+    web_news_list = []
+
+    paper_news_files = os.listdir(paper_news_relative_path)
+    paper_news_files.sort()
+    web_news_files = os.listdir(web_news_relative_path)
+    web_news_files.sort()
+    for paper_file_name, web_file_name in zip(paper_news_files, web_news_files):
+        with open(os.path.join(paper_news_relative_path, paper_file_name), "r", encoding="utf-8") as f:
             news = json.load(f)
             news["lines"] = news["content"].split("\n")
             news["show_content_len"] = random.randint(50, 200)
             news["show_abstract_len"] = random.randint(50, 200)
-            news_list.append(news)
-    return news_list
+            paper_news_list.append(news)
+        with open(os.path.join(web_news_relative_path, web_file_name), "r", encoding="utf-8") as f:
+            news = json.load(f)
+            news["lines"] = news["content"].split("\n")
+            news["show_content_len"] = random.randint(50, 200)
+            news["show_abstract_len"] = random.randint(50, 200)
+            web_news_list.append(news)
+    return paper_news_list, web_news_list
 
 
-all_news_list = load_news()
-print(len(all_news_list))
+all_paper_news_list, all_web_news_list = load_news()
+print(len(all_paper_news_list))
 
 
 def shuffle_news(news_list):
@@ -45,16 +56,28 @@ def shuffle_news(news_list):
 @app.route('/newspaper/<uid>')
 def newspaper(uid):
     # global all_news_list
-    logger.info("user: {}".format(escape(uid)))
-    random.shuffle(all_news_list)
+    shuffle_idx = [i for i in range(len(all_paper_news_list))]
+    random.shuffle(shuffle_idx)
+    logger.info("user: {} visits newspaper version with news sequence: {}".format(escape(uid), shuffle_idx))
+    news = [all_paper_news_list[i] for i in shuffle_idx]
     # all_news_list = shuffle_news(all_news_list)
-    return render_template('newspaper.html', news_list=all_news_list)
+    return render_template('newspaper.html', news_list=news)
+
+
+@app.route('/web_news/<uid>')
+def web_news(uid):
+    # global all_news_list
+    shuffle_idx = [i for i in range(len(all_web_news_list))]
+    random.shuffle(shuffle_idx)
+    logger.info("user: {} visits web version with news sequence: {}".format(escape(uid), shuffle_idx))
+    news = [all_web_news_list[i] for i in shuffle_idx]
+    return render_template('web-format.html', news_list=news)
 
 
 @app.route('/newspaper/newspaper_read/<news_idx>')
 def read_news(news_idx):
     news_idx = int(news_idx)
-    return render_template('newspaper_read.html', news_idx=news_idx, news_list=all_news_list)
+    return render_template('newspaper_read.html', news_idx=news_idx, news_list=all_paper_news_list)
 
 
 if __name__ == '__main__':

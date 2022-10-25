@@ -121,9 +121,15 @@ p.news-detail-lines{
     margin-bottom: 4%;
 }
 .web-news-overview{
+    /*color: transparent;*/
+    /*text-shadow: 0 0 3px #00000063;*/
+    font-size: 30%;
     color: lightgray;
 }
 .web-news-overview-right{
+    /*color: transparent;*/
+    /*text-shadow: 0 0 3px #00000063;*/
+    font-size: 30%;
     color: lightgray;
     line-height: 140%;
 }
@@ -140,4 +146,22 @@ p.news-detail-lines{
     border-top-width: 2px;
     border-top-style: solid;
     border-top-color: rgb(14, 10, 10);
+}
+
+/*  for web version read  */
+.web-news-read-back{
+    margin-left: -20%;
+}
+.web-news-read{
+    margin-top: 2%;
+}
+.web-news-read-title{
+    margin: 0 0 4% 0;
+    font-size: 2rem;
+    font-weight: 600;
+}
+.web-news-read-line{
+    font-weight: 100 !important;
+    font-size: 1.3rem;
+    line-height: 1.2;
 }

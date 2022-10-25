@@ -3,7 +3,7 @@
         <div class="col-md-1 offset-md-3 card bg-white"
              style="border-bottom-color: rgba(0, 0, 0, 0.72); border-bottom-style: solid; border-bottom-width: 1px;
                     border-radius: 0; padding: 0.5rem 1rem 0 0 !important;">
-            <a href="newspaper_read/0">
+            <a href="newspaper_read/0/{{ uid }}">
                 <div class="card-body">
                     <h5 class="news-overview-title">{{ news_list[0].title }}</h5>
                     {% for line in news_list[0].lines %}
@@ -17,7 +17,7 @@
              style="border-right-color: rgba(0, 0, 0, 0.72); border-right-style: solid; border-right-width: 1px;
                     border-bottom-color: rgba(0, 0, 0, 0.72); border-bottom-style: solid; border-bottom-width: 1px;
                     border-radius: 0; padding: 0.5rem 1rem 0 0 !important;">
-            <a href="newspaper_read/1">
+            <a href="newspaper_read/1/{{ uid }}">
                 <div class="card-body">
                     <h5 class="news-overview-title">{{ news_list[1].title }}</h5>
                     {% for line in news_list[1].lines %}
@@ -33,7 +33,7 @@
             <div class="card bg-white" style="padding-top: 0 !important;
                     border-bottom-color: rgba(0, 0, 0, 0.72);
                     border-bottom-style: solid; border-bottom-width: 1px; border-radius: 0">
-                <a href="newspaper_read/2">
+                <a href="newspaper_read/2/{{ uid }}">
                     <div class="card-body">
                         <h5 class="news-overview-title">{{ news_list[2].title }}</h5>
                         {% for line in news_list[2].lines %}
@@ -45,7 +45,7 @@
             <div class="card bg-white" style="border-bottom-color: rgba(0, 0, 0, 0.72);
                     border-bottom-style: solid; border-bottom-width: 1px; border-radius: 0;
                     padding-top: 0 !important;">
-                <a href="newspaper_read/3">
+                <a href="newspaper_read/3/{{ uid }}">
                     <div class="card-body">
                         <h5 class="news-overview-title">{{ news_list[3].title }}</h5>
                         {% for line in news_list[3].lines %}
@@ -55,7 +55,7 @@
                 </a>
             </div>
             <div class="card bg-white" style="padding-top: 0 !important;">
-                <a href="newspaper_read/4">
+                <a href="newspaper_read/4/{{ uid }}">
                     <div class="card-body">
                         <h5 class="news-overview-title">{{ news_list[4].title }}</h5>
                         {% for line in news_list[4].lines %}
@@ -68,7 +68,7 @@
         <div class="col-md-1 card bg-white" style="border-bottom-color: rgba(0, 0, 0, 0.72);
                     border-bottom-style: solid; border-bottom-width: 1px; border-radius: 0;
                     padding: 0.5rem 0 0 1rem !important;">
-            <a href="newspaper_read/5">
+            <a href="newspaper_read/5/{{ uid }}">
                 <div class="card-body">
                     <h5 class="news-overview-title">{{ news_list[5].title }}</h5>
                     {% for line in news_list[5].lines %}
@@ -80,7 +80,7 @@
     </div>
     <div class="card-group">
         <div class="card bg-white col-md-3 offset-md-3" style="padding: 0.5rem 1rem 0 0 !important;">
-            <a href="newspaper_read/6">
+            <a href="newspaper_read/6/{{ uid }}">
                 <div class="card-body">
                     <h5 class="news-overview-title">{{ news_list[6].title }}</h5>
                     {% for line in news_list[6].lines %}
@@ -90,7 +90,7 @@
             </a>
         </div>
         <div class="card bg-white col-md-3" style="padding: 0.5rem 1rem 0 0 !important;">
-            <a href="newspaper_read/7">
+            <a href="newspaper_read/7/{{ uid }}">
                 <div class="card-body">
                     <h5 class="news-overview-title">{{ news_list[7].title }}</h5>
                     {% for line in news_list[7].lines %}

@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <script>
+        $(document).ready(function() {
+            let news = $('.paper-news-ov')
+            let min_distance = 0;
+            {#for (let i=0; i<6; i++){#}
+            {#    var $this = $(news[i]);#}
+            {#    let distance = $this.parent().height() - $this.height();#}
+            {#    console.log(distance);#}
+            {#    if (distance < min_distance){#}
+            {#        min_distance = distance#}
+            {#    }#}
+            {##}
+            {# }#}
+            let $this = $(news);
+            let diff_dist = $this.parent().height() - $this.height()
+
+            console.log("diff_dist: " + diff_dist)
+
+        })
+    </script>
+    <div class="newspaper-overview col-xs-12 col-sm-10 col-md-8 col-lg-6 offset-md-2 offset-sm-1 offset-lg-3">
+        <div class="row">
+            <div class="col-md-2 col-lg-2 paper-news-x">
+            <div class="paper-news-ov">
+                <h5 class="paper-news-ov-title">{{ news_list[0].title }}</h5>
+                <div class="paper-news-ov-lines">
+                    {% for line in news_list[0].lines %}
+                        <p class="paper-news-ov-line">{{ line }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            </div>
+            <div class="col-md-2 col-lg-2 paper-news-x">
+                <h5 class="paper-news-ov-title">{{ news_list[1].title }}</h5>
+                <div class="paper-news-ov-lines">
+                {% for line in news_list[1].lines %}
+                    <p class="paper-news-ov-line">{{ line }}</p>
+                {% endfor %}
+                </div>
+            </div>
+            <div class="mid-row">
+                <div class="mid-row-1 paper-news-x">
+                    <h5 class="paper-news-ov-title">{{ news_list[2].title }}</h5>
+                    <div class="paper-news-ov-lines">
+                    {% for line in news_list[2].lines %}
+                        <p class="paper-news-ov-line">{{ line }}</p>
+                    {% endfor %}
+                    </div>
+                </div>
+                <div class="mid-row-2 paper-news-x">
+                    <h5 class="paper-news-ov-title">{{ news_list[3].title }}</h5>
+                    <div class="paper-news-ov-lines">
+                    {% for line in news_list[3].lines %}
+                        <p class="paper-news-ov-line">{{ line }}</p>
+                    {% endfor %}
+                    </div>
+                </div>
+                <div class="mid-row-3 paper-news-x">
+                    <h5 class="paper-news-ov-title">{{ news_list[4].title }}</h5>
+                    <div class="paper-news-ov-lines">
+                    {% for line in news_list[4].lines %}
+                        <p class="paper-news-ov-line">{{ line }}</p>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-lg-2 paper-news-x">
+                <h5 class="paper-news-ov-title">{{ news_list[5].title }}</h5>
+                <div class="paper-news-ov-lines">
+                {% for line in news_list[5].lines %}
+                    <p class="paper-news-ov-line">{{ line }}</p>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <div class="card bg-white news-6-ov-title">
+                    <a href="web_news_read/6/{{ uid }}">
+                        <div class="card-body">
+                            <h5 class="paper-news-ov-title">{{ news_list[6].title }}</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="card bg-white news-7-ov-title">
+                    <a href="web_news_read/7/{{ uid }}">
+                        <div class="card-body">
+                            <h5 class="paper-news-ov-title">{{ news_list[7].title }}</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <div class="card bg-white news-6-ov-content">
+                    <div class="card-body">
+                        <a href="web_news_read/6/{{ uid }}">
+                            <div class="paper-news-ov-lines">
+                            {% for line in news_list[6].lines %}
+                                <p class="paper-news-ov-line">{{ line }}</p>
+                            {% endfor %}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="card bg-white news-7-ov-content">
+                    <div class="card-body">
+                        <a href="web_news_read/7/{{ uid }}">
+                            <div class="paper-news-ov-lines">
+                            {% for line in news_list[7].lines %}
+                                <p class="paper-news-ov-line">{{ line }}</p>
+                            {% endfor %}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

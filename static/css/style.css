@@ -15,6 +15,9 @@ html, body{
 .card-body:hover .news-overview{
     color: black;
 }
+.paper-news-ov:hover .paper-news-ov-line {
+    color: black;
+}
 h5, h6{
     line-height: 1;
     margin-bottom: 0.15rem;
@@ -33,6 +36,9 @@ p.news-detail-lines{
     margin-top: 10px;
     font-weight: 500;
     font-size: 22px;
+}
+.col-md-6{
+    max-width: 49.5%;
 }
 
 
@@ -100,9 +106,9 @@ p.news-detail-lines{
 .mid-row{
     flex: 1;
 }
-.paper-news-x{
-    padding: 0 0.3rem 0 0.3rem;
-}
+/*.paper-news-x{*/
+/*    padding: 0 0.3rem 0 0.3rem;*/
+/*}*/
 .paper-news-ov-lines{
     /*transform: scale(0.9);*/
     /*margin: -1rem 0rem 0rem -0.5rem;*/

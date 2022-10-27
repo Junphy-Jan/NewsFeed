@@ -89,7 +89,7 @@ def read_news(news_idx, uid):
     news_idx = int(news_idx)
     # news_idx = user_news_idx[uid][news_idx]
     news_list = [all_paper_news_list[i] for i in user_news_idx[uid]]
-    return render_template('newspaper_read.html', news_idx=news_idx, news_list=news_list)
+    return render_template('newspaper_read-v2.html', news_idx=news_idx, news_list=news_list)
 
 
 @app.route('/web_news/<uid>')

@@ -112,6 +112,9 @@ p.news-detail-lines{
 .paper-news-ov-lines{
     /*transform: scale(0.9);*/
     /*margin: -1rem 0rem 0rem -0.5rem;*/
+    -webkit-filter: blur(0.7px);
+    -ms-filter: blur(0.7px);
+    filter: blur(0.7px);
 }
 /* for newspaper version */
 

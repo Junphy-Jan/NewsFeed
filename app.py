@@ -2,7 +2,7 @@ import json
 import os
 import random
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from markupsafe import escape
 
 from newsFeedUtils.loggerHelper import logger
@@ -59,6 +59,8 @@ def shuffle_news(news_list):
 #     return 'Hello World!'
 @app.route('/newspaper/<uid>')
 def newspaper(uid):
+    logger.info("request: {}".format(request.data))
+    logger.info("request.head: {}".format(dict(request.headers)))
     global user_news_idx
     # if uid in user_news_idx:
     #     shuffle_idx = user_news_idx[uid]
@@ -89,11 +91,13 @@ def read_news(news_idx, uid):
     news_idx = int(news_idx)
     # news_idx = user_news_idx[uid][news_idx]
     news_list = [all_paper_news_list[i] for i in user_news_idx[uid]]
-    return render_template('newspaper_read-v2.html', news_idx=news_idx, news_list=news_list)
+    return render_template('newspaper_read-v3.html', news_idx=news_idx, news_list=news_list)
 
 
 @app.route('/web_news/<uid>')
 def web_news(uid):
+    logger.info("request: {}".format(request.data))
+    logger.info("request.head: {}".format(dict(request.headers)))
     # global all_news_list
     global user_news_idx
     if uid in user_news_idx:

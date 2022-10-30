@@ -18,7 +18,8 @@
                 }
                 console.log("news-" + i + "height: " + $(news[i]).height())
             }
-
+            let bottom_news = $('#bottom-news')
+            bottom_news.css("margin-top", 10)
             {#diff_dist = k * title.margin-top + n*lines.margin-top#}
             {# 设margin-top为 x，则距离为 K*标题和正文的margin + 正文之间的margin 即 diff = k*x + n*x #}
             {#let news_content = $($this.children()[1])#}
@@ -35,7 +36,7 @@
 
         })
     </script>
-    <div class="newspaper-overview col-xs-12 col-sm-10 col-md-8 col-lg-6 offset-md-2 offset-sm-1 offset-lg-3"
+    <div class="newspaper-overview col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 offset-md-2 offset-sm-1 offset-lg-3 offset-xl-3"
          style="margin-top: 2rem">
         <div class="row">
             <div class="col-md-2 col-lg-2 paper-news-x">
@@ -110,7 +111,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="bottom-news">
             <div class="col-md-6 col-lg-6">
                 <div class="card bg-white news-6-ov-title">
                     <a href="newspaper_read/6/{{ uid }}">

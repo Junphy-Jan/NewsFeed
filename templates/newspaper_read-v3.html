@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% block head %}
+        <!-- CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+        <!-- jQuery and JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+        <script src="https://cdn.socket.io/4.5.3/socket.io.min.js"
+                integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi"
+                crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+        <title>{% block title %}{% endblock %}news read</title>
+    {% endblock %}
+</head>
+<body>
+<script>
+    // 对document.hidden做前缀处理
+    function getHiddenProp(){
+        var prefixes = ['webkit','moz','ms','o'];
+
+        // if 'hidden' is natively supported just return it
+        if ('hidden' in document) return 'hidden';
+
+        // otherwise loop over all the known prefixes until we find one
+        for (var i = 0; i < prefixes.length; i++){
+            if ((prefixes[i] + 'Hidden') in document)
+                return prefixes[i] + 'Hidden';
+        }
+
+        // otherwise it's not supported
+        return null;
+    };
+
+    // 获取document.visibilityState属性
+    function getVisibilityState() {
+        var prefixes = ['webkit', 'moz', 'ms', 'o'];
+        if ('visibilityState' in document) return 'visibilityState';
+        for (var i = 0; i < prefixes.length; i++) {
+            if ((prefixes[i] + 'VisibilityState') in document)
+                return prefixes[i] + 'VisibilityState';
+        }
+        // otherwise it's not supported
+        return null;
+    };
+
+    // 给document添加事件
+    var visProp = getHiddenProp();
+    if (visProp) {
+        var evtname = visProp.replace(/[H|h]idden/, '') + 'visibilitychange';
+        document.addEventListener(evtname, function () {
+            document.title = document[getVisibilityState()]+"状态";
+            if (document[getVisibilityState()] == 'visible') {
+                console.log('回来了');
+            }else{
+                console.log('离开了');
+            }
+        },false);
+    }
+</script>
+
+<div id="content">
+
+    <script>
+        $(document).ready(function () {
+            let min_height = 1000
+            let news = $('.paper-news-ov');
+            for (let i = 0; i < news.length; i++) {
+                console.log("news-" + i + "height: " + $(news[i]).height())
+                if ($(news[i]).height() < min_height) {
+                    min_height = $(news[i]).height()
+                }
+            }
+            for (let i = 0; i < news.length; i++) {
+                if ($(news[i]).height() >= min_height) {
+                    $(news[i]).css("height", min_height + 2)
+                    $(news[i]).css("overflow", 'hidden')
+                }
+                console.log("news-" + i + "height: " + $(news[i]).height())
+            }
+            let bottom_news = $('#bottom-news')
+            bottom_news.css("margin-top", 10)
+
+            {#diff_dist = k * title.margin-top + n*lines.margin-top#}
+            {# 设margin-top为 x，则距离为 K*标题和正文的margin + 正文之间的margin 即 diff = k*x + n*x #}
+            {#let news_content = $($this.children()[1])#}
+            {#let content_paragraphs = news_content.children().length#}
+            {#margin_top_value = diff_dist /(content_paragraphs - 1 + k)#}
+            {#console.log("margin-top: " + margin_top_value)#}
+            {#news_content.css("margin-top", 2*margin_top_value)#}
+            {#for (let i=1;i<content_paragraphs;i++){#}
+            {#    childx = $(news_content.children()[i])#}
+            {#    childx.css("margin-top", margin_top_value)#}
+            {# } #}
+            {#diff_dist = $this.parent().height() - $this.height()#}
+            {#console.log("结束 diff_dist: " + diff_dist)#}
+
+        })
+
+        function read_news(id) {
+            document.getElementById("news-detail-title").innerHTML = id.children[0].textContent;
+
+            {#删除原有元素#}
+            let news_content = document.getElementById("news-detail-content");
+            let content_lines = document.getElementsByClassName("news-detail-lines");
+            for (let i = content_lines.length - 1; i >= 0; i--) {
+                news_content.removeChild(content_lines[i])
+            }
+            if(id.parentElement.parentElement.className.includes("news-6")){
+                let news_content_id = document.getElementById("news-6-content-lines")
+                for (let i = 0; i < news_content_id.children.length; i++) {
+                    let detail_line = document.createElement("p");
+                    detail_line.setAttribute("class", "news-detail-lines");
+                    detail_line.innerHTML = news_content_id.children[i].textContent;
+                    news_content.appendChild(detail_line);
+                }
+            }else if (id.parentElement.parentElement.className.includes("news-7")){
+                let news_content_id = document.getElementById("news-7-content-lines")
+                for (let i = 0; i < news_content_id.children.length; i++) {
+                    let detail_line = document.createElement("p");
+                    detail_line.setAttribute("class", "news-detail-lines");
+                    detail_line.innerHTML = news_content_id.children[i].textContent;
+                    news_content.appendChild(detail_line);
+                }
+            }
+            else {
+                {# 添加元素 #}
+                for (let i = 1; i < id.children.length; i++) {
+                    let detail_line = document.createElement("p");
+                    detail_line.setAttribute("class", "news-detail-lines");
+                    detail_line.innerHTML = id.children[i].textContent;
+                    news_content.appendChild(detail_line);
+                }
+            }
+            {#document.getElementById("news-detail-content").innerHTML = id.children[1].textContent;#}
+        }
+    </script>
+        <div class="col-md-5 col-lg-5 col-xl-5 offset-md-1" id="newspaper_page"
+             style="-webkit-transform: scale(0.80); -webkit-transform-origin-y: top; padding: 1rem 1rem 0 1rem;
+                    border: solid 1px; float: left; margin-top: 1rem">
+            <h4 style="margin: 0 0 1rem 0; text-align: center">Daily News</h4>
+            <div class="row">
+                <div class="col-md-2 col-lg-2 paper-news-x">
+                    <a href="#">
+                        <div class="paper-news-ov" onclick="read_news(this)">
+                            <h5 class="paper-news-ov-title">{{ news_list[0].title }}</h5>
+                            <div class="paper-news-ov-lines">
+                                {% for line in news_list[0].lines %}
+                                    <p class="paper-news-ov-line">{{ line }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-2 col-lg-2 paper-news-x">
+                    <a href="#">
+                        <div class="paper-news-ov" onclick="read_news(this)">
+                            <h5 class="paper-news-ov-title">{{ news_list[1].title }}</h5>
+                            <div class="paper-news-ov-lines">
+                                {% for line in news_list[1].lines %}
+                                    <p class="paper-news-ov-line">{{ line }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="mid-row">
+                    <div class="paper-news-ov">
+                    <a href="#">
+                        <div class="mid-row-1 paper-news-x" onclick="read_news(this)">
+                            <h5 class="paper-news-ov-title">{{ news_list[2].title }}</h5>
+                            <div class="paper-news-ov-lines">
+                                {% for line in news_list[2].lines %}
+                                    <p class="paper-news-ov-line">{{ line }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="mid-row-2 paper-news-x" onclick="read_news(this)">
+                            <h5 class="paper-news-ov-title">{{ news_list[3].title }}</h5>
+                            <div class="paper-news-ov-lines">
+                                {% for line in news_list[3].lines %}
+                                    <p class="paper-news-ov-line">{{ line }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="mid-row-3 paper-news-x" onclick="read_news(this)">
+                            <h5 class="paper-news-ov-title">{{ news_list[4].title }}</h5>
+                            <div class="paper-news-ov-lines">
+                                {% for line in news_list[4].lines %}
+                                    <p class="paper-news-ov-line">{{ line }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </a>
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-lg-2 paper-news-x">
+                    <a href="#">
+                        <div class="paper-news-ov" onclick="read_news(this)">
+                            <h5 class="paper-news-ov-title">{{ news_list[5].title }}</h5>
+                            <div class="paper-news-ov-lines">
+                                {% for line in news_list[5].lines %}
+                                    <p class="paper-news-ov-line">{{ line }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row" id="bottom-news">
+                <div class="col-md-6 col-lg-6">
+                    <div class="card bg-white news-6-ov-title">
+                        <a href="#">
+                            <div class="card-body" onclick="read_news(this)">
+                                <h5 class="paper-news-ov-title">{{ news_list[6].title }}</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="card bg-white news-7-ov-title">
+                        <a href="#">
+                            <div class="card-body" onclick="read_news(this)">
+                                <h5 class="paper-news-ov-title">{{ news_list[7].title }}</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-6">
+                    <div class="card bg-white news-6-ov-content">
+                        <div class="card-body">
+                                <div class="paper-news-ov-lines" id="news-6-content-lines">
+                                    {% for line in news_list[6].lines %}
+                                        <p class="paper-news-ov-line">{{ line }}</p>
+                                    {% endfor %}
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="card bg-white news-7-ov-content">
+                        <div class="card-body">
+                                <div class="paper-news-ov-lines" id="news-7-content-lines">
+                                    {% for line in news_list[7].lines %}
+                                        <p class="paper-news-ov-line">{{ line }}</p>
+                                    {% endfor %}
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 col-lg-5 col-xl-4" id="news_detail" style="float: right; margin-right: 15%;">
+            <div class="card p-3 bg-white">
+                <div class="card-body" id="news-detail">
+                    <h3 id="news-detail-title" class="web-news-read-title">{{ news_list[news_idx].title }}</h3>
+                    <div id="news-detail-content">
+                        {% for line in news_list[news_idx].lines %}
+                            <p class="news-detail-lines">{{ line }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    <button type="button" class="btn btn-secondary" id="end-reading">结束阅读</button>
+
+</div>
+
+</body>
+</html>

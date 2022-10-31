@@ -155,14 +155,14 @@ p.news-detail-lines{
     /*text-shadow: 0 0 3px #00000063;*/
     /*font-size: 30%;*/
     /*color: lightgray;*/
-    font-size: 95%;
+    font-size: 86%;
     line-height: 0.9;
     white-space: pre-line;
     margin-bottom: 0.3rem;
     margin-top: 4px;
-    -webkit-filter: blur(0.7px);
-    -ms-filter: blur(0.7px);
-    filter: blur(0.7px);
+    -webkit-filter: blur(0.9px);
+    -ms-filter: blur(0.9px);
+    filter: blur(0.9px);
 }
 .web-news-overview-right{
     /*color: transparent;*/

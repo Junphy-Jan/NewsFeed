@@ -29,6 +29,7 @@ h5, h6{
     line-height: 1;
     margin-bottom: 0.15rem;
     font-weight: 600;
+    font-size: 1.2rem;
 }
 a{
     color: unset;
@@ -160,18 +161,18 @@ p.news-detail-lines{
     white-space: pre-line;
     margin-bottom: 0.3rem;
     margin-top: 4px;
-    -webkit-filter: blur(0.9px);
-    -ms-filter: blur(0.9px);
-    filter: blur(0.9px);
+    -webkit-filter: blur(1.3px);
+    -ms-filter: blur(1.3px);
+    filter: blur(1.3px);
 }
 .web-news-overview-right{
     /*color: transparent;*/
     /*text-shadow: 0 0 3px #00000063;*/
     font-size: 95%;
     line-height: 140%;
-    -webkit-filter: blur(0.9px);
-    -ms-filter: blur(0.9px);
-    filter: blur(0.9px);
+    -webkit-filter: blur(1.3px);
+    -ms-filter: blur(1.3px);
+    filter: blur(1.3px);
 }
 
 .hr1{

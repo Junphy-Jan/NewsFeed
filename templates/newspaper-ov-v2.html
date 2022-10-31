@@ -2,39 +2,70 @@
 
 {% block content %}
     <script>
-        $(document).ready(function () {
+        {#$(document).ready(function () {#}
+        {#    let min_height = 1000#}
+        {#    let news = $('.paper-news-ov');#}
+        {#    for (let i = 0; i < news.length; i++){#}
+        {#        console.log("news-" + i + "height: " + $(news[i]).height())#}
+        {#        if($(news[i]).height() < min_height){#}
+        {#            min_height = $(news[i]).height()#}
+        {#        }#}
+        {#    }#}
+        {#    for (let i = 0; i < news.length; i++){#}
+        {#        if($(news[i]).height() >= min_height){#}
+        {#            $(news[i]).css("height", min_height+2)#}
+        {#            $(news[i]).css("overflow", 'hidden')#}
+        {#        }#}
+        {#        console.log("news-" + i + "height: " + $(news[i]).height())#}
+        {#    }#}
+        {#    let bottom_news = $('#bottom-news')#}
+        {#    bottom_news.css("margin-top", 10)#}
+        {# })#}
+        function changeNewsHeight(){
             let min_height = 1000
             let news = $('.paper-news-ov');
-            for (let i = 0; i < news.length; i++){
+            for (let i = 0; i < news.length; i++) {
                 console.log("news-" + i + "height: " + $(news[i]).height())
-                if($(news[i]).height() < min_height){
+                if ($(news[i]).height() < min_height) {
                     min_height = $(news[i]).height()
                 }
             }
-            for (let i = 0; i < news.length; i++){
-                if($(news[i]).height() >= min_height){
-                    $(news[i]).css("height", min_height+2)
+            for (let i = 0; i < news.length; i++) {
+                if ($(news[i]).height() >= min_height) {
+                    $(news[i]).css("height", min_height + 2)
                     $(news[i]).css("overflow", 'hidden')
                 }
                 console.log("news-" + i + "height: " + $(news[i]).height())
             }
             let bottom_news = $('#bottom-news')
             bottom_news.css("margin-top", 10)
-            {#diff_dist = k * title.margin-top + n*lines.margin-top#}
-            {# 设margin-top为 x，则距离为 K*标题和正文的margin + 正文之间的margin 即 diff = k*x + n*x #}
-            {#let news_content = $($this.children()[1])#}
-            {#let content_paragraphs = news_content.children().length#}
-            {#margin_top_value = diff_dist /(content_paragraphs - 1 + k)#}
-            {#console.log("margin-top: " + margin_top_value)#}
-            {#news_content.css("margin-top", 2*margin_top_value)#}
-            {#for (let i=1;i<content_paragraphs;i++){#}
-            {#    childx = $(news_content.children()[i])#}
-            {#    childx.css("margin-top", margin_top_value)#}
-            {# } #}
-            {#diff_dist = $this.parent().height() - $this.height()#}
-            {#console.log("结束 diff_dist: " + diff_dist)#}
-
+        }
+        function resizeNewsHeight(){
+            let news = $('.paper-news-ov');
+            for(let i=0; i < news.length; i++){
+                $(news[i]).css("height", "unset")
+            }
+            changeNewsHeight()
+        }
+        $(document).ready(function () {
+            changeNewsHeight()
         })
+
+        let timeOutFunctionId;
+
+        // The following event is triggered continuously
+        // while we are resizing the window
+        window.addEventListener("resize", function() {
+
+            // clearTimeOut() resets the setTimeOut() timer
+            // due to this the function in setTimeout() is
+            // fired after we are done resizing
+            clearTimeout(timeOutFunctionId);
+
+            // setTimeout returns the numeric ID which is used by
+            // clearTimeOut to reset the timer
+            timeOutFunctionId = setTimeout(resizeNewsHeight, 50);
+        });
     </script>
     <div class="newspaper-overview col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 offset-md-2 offset-sm-1 offset-lg-3 offset-xl-3"
          style="margin-top: 2rem">

@@ -63,7 +63,7 @@
 <div id="content">
 
     <script>
-        $(document).ready(function () {
+        function changeNewsHeight(){
             let min_height = 1000
             let news = $('.paper-news-ov');
             for (let i = 0; i < news.length; i++) {
@@ -81,22 +81,33 @@
             }
             let bottom_news = $('#bottom-news')
             bottom_news.css("margin-top", 10)
-
-            {#diff_dist = k * title.margin-top + n*lines.margin-top#}
-            {# 设margin-top为 x，则距离为 K*标题和正文的margin + 正文之间的margin 即 diff = k*x + n*x #}
-            {#let news_content = $($this.children()[1])#}
-            {#let content_paragraphs = news_content.children().length#}
-            {#margin_top_value = diff_dist /(content_paragraphs - 1 + k)#}
-            {#console.log("margin-top: " + margin_top_value)#}
-            {#news_content.css("margin-top", 2*margin_top_value)#}
-            {#for (let i=1;i<content_paragraphs;i++){#}
-            {#    childx = $(news_content.children()[i])#}
-            {#    childx.css("margin-top", margin_top_value)#}
-            {# } #}
-            {#diff_dist = $this.parent().height() - $this.height()#}
-            {#console.log("结束 diff_dist: " + diff_dist)#}
-
+        }
+        function resizeNewsHeight(){
+            let news = $('.paper-news-ov');
+            for(let i=0; i < news.length; i++){
+                $(news[i]).css("height", "unset")
+            }
+            changeNewsHeight()
+        }
+        $(document).ready(function () {
+            changeNewsHeight()
         })
+
+        let timeOutFunctionId;
+
+        // The following event is triggered continuously
+        // while we are resizing the window
+        window.addEventListener("resize", function() {
+
+            // clearTimeOut() resets the setTimeOut() timer
+            // due to this the function in setTimeout() is
+            // fired after we are done resizing
+            clearTimeout(timeOutFunctionId);
+
+            // setTimeout returns the numeric ID which is used by
+            // clearTimeOut to reset the timer
+            timeOutFunctionId = setTimeout(resizeNewsHeight, 50);
+        });
 
         function read_news(id) {
             document.getElementById("news-detail-title").innerHTML = id.children[0].textContent;
@@ -112,7 +123,7 @@
                 for (let i = 0; i < news_content_id.children.length; i++) {
                     let detail_line = document.createElement("p");
                     detail_line.setAttribute("class", "news-detail-lines");
-                    detail_line.innerHTML = news_content_id.children[i].textContent;
+                    detail_line.innerHTML = news_content_id.children[i].innerText;
                     news_content.appendChild(detail_line);
                 }
             }else if (id.parentElement.parentElement.className.includes("news-7")){
@@ -120,7 +131,7 @@
                 for (let i = 0; i < news_content_id.children.length; i++) {
                     let detail_line = document.createElement("p");
                     detail_line.setAttribute("class", "news-detail-lines");
-                    detail_line.innerHTML = news_content_id.children[i].textContent;
+                    detail_line.innerHTML = news_content_id.children[i].innerText;
                     news_content.appendChild(detail_line);
                 }
             }
@@ -129,16 +140,16 @@
                 for (let i = 1; i < id.children.length; i++) {
                     let detail_line = document.createElement("p");
                     detail_line.setAttribute("class", "news-detail-lines");
-                    detail_line.innerHTML = id.children[i].textContent;
+                    detail_line.innerHTML = id.children[i].innerText;
                     news_content.appendChild(detail_line);
                 }
             }
             {#document.getElementById("news-detail-content").innerHTML = id.children[1].textContent;#}
         }
     </script>
-        <div class="col-md-5 col-lg-5 col-xl-5 offset-md-1" id="newspaper_page"
+        <div class="col-md-5 col-lg-5 col-xl-5" id="newspaper_page"
              style="-webkit-transform: scale(0.80); -webkit-transform-origin-y: top; padding: 1rem 1rem 0 1rem;
-                    border: solid 1px; float: left; margin-top: 1rem">
+                    border: solid 1px; float: left; margin-top: 1rem; margin-left: 7%">
             <h4 style="margin: 0 0 1rem 0; text-align: center">Daily News</h4>
             <div class="row">
                 <div class="col-md-2 col-lg-2 paper-news-x">
@@ -258,7 +269,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5 col-lg-5 col-xl-4" id="news_detail" style="float: right; margin-right: 15%;">
+        <div class="col-md-5 col-lg-5 col-xl-5" id="news_detail" style="float: right; margin-right: 15%;">
             <div class="card p-3 bg-white">
                 <div class="card-body" id="news-detail">
                     <h3 id="news-detail-title" class="web-news-read-title">{{ news_list[news_idx].title }}</h3>

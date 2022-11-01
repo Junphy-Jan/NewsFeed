@@ -58,10 +58,18 @@
             }
         },false);
     }
+    const socket = io();
+    socket.on('connect', function() {
+    });
+    setInterval(() => {
+        const url = window.location.pathname;
+        const user = url.substring(url.lastIndexOf('/') + 1, url.length);
+        socket.volatile.emit("heartbeat", {username: user, cur_url: url});
+        }, 1500
+    );
 </script>
-
+{% include 'confirmDialog.html' %}
 <div id="content">
-
     <script>
         function changeNewsHeight(){
             let min_height = 1000
@@ -72,6 +80,7 @@
                     min_height = $(news[i]).height()
                 }
             }
+            min_height += 5
             for (let i = 0; i < news.length; i++) {
                 if ($(news[i]).height() >= min_height) {
                     $(news[i]).css("height", min_height + 2)
@@ -149,7 +158,7 @@
     </script>
         <div class="col-md-5 col-lg-5 col-xl-5" id="newspaper_page"
              style="-webkit-transform: scale(0.80); -webkit-transform-origin-y: top; padding: 1rem 1rem 0 1rem;
-                    border: solid 1px; float: left; margin-top: 1rem; margin-left: 7%">
+                    border: solid 1px; float: left; margin-top: 1rem; margin-left: 6%">
             <h4 style="margin: 0 0 1rem 0; text-align: center">Daily News</h4>
             <hr class="hr1" style="rgb(145 145 145);border-top-style: solid;;border-top-width: 1px;"/>
             <div class="row">
@@ -270,7 +279,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5 col-lg-5 col-xl-5" id="news_detail" style="float: right; margin-right: 15%;">
+        <div class="col-md-5 col-lg-5 col-xl-5" id="news_detail" style="float: right; margin-right: 14%;">
             <div class="card p-3 bg-white">
                 <div class="card-body" id="news-detail">
                     <h3 id="news-detail-title" class="web-news-read-title">{{ news_list[news_idx].title }}</h3>
@@ -282,8 +291,7 @@
                 </div>
             </div>
         </div>
-    <button type="button" class="btn btn-secondary" id="end-reading">结束阅读</button>
-
+    <button type="button" class="btn btn-secondary" id="end-reading" onchange="endReading()">结束阅读</button>
 </div>
 
 </body>

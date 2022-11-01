@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+    {% include 'confirmDialog.html' %}
+
     <div class="web-news-read col-md-4 offset-md-4">
         <a href="javascript:history.back(-1)">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
@@ -13,5 +15,6 @@
         {% for line in news.lines %}
             <p class="news-detail-lines">{{ line }}</p>
         {% endfor %}
+        <button type="button" class="btn btn-secondary" id="end-reading">结束阅读</button>
     </div>
 {% endblock %}

@@ -58,6 +58,15 @@
             }
         },false);
     };
+    const socket = io();
+    socket.on('connect', function() {
+    });
+    setInterval(() => {
+            url = window.location.pathname;
+            var user = url.substring(url.lastIndexOf('/') + 1, url.length);
+            socket.volatile.emit("heartbeat", {username: user, cur_url: url});
+        }, 1500
+    );
 </script>
 <nav class="navbar navbar-expand-lg navbar-light shadow mb-5 bg-white rounded"
      style="background-color: #e3f2fd; margin-bottom: 5px !important; height: 3.5rem">

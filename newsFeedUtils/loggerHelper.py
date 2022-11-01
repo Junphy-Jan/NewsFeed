@@ -27,6 +27,7 @@ def get_logger(log_filename, level=logging.INFO, when='midnight', back_count=0):
 
 
 logger = get_logger("newsFeed.log")
+hb_logger = get_logger("heartbeat.log")
 
 
 if __name__ == "__main__":

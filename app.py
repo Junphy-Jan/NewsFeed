@@ -1,13 +1,16 @@
 import json
 import os
 import random
+import time
 
 from flask import Flask, render_template, request
 from markupsafe import escape
-
-from newsFeedUtils.loggerHelper import logger
+from flask_socketio import SocketIO
+from newsFeedUtils.loggerHelper import logger, hb_logger
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
 
 
 # 存放每个用户对应的随机新闻顺序
@@ -118,5 +121,22 @@ def read_web_news(news_idx, uid):
     return render_template('web-format-read.html', news=news_list[news_idx])
 
 
+@socketio.on('heartbeat')
+def handle_heartbeat(json_data):
+    print('received json: ' + str(json_data))
+    json_data["time"] = time.time()
+    hb_logger.info("-heartbeat|{}".format(json_data))
+
+
+@socketio.on('connect')
+def handle_connect():
+    print('connected')
+
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    print('disconnected')
+
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    socketio.run(app, host='0.0.0.0')

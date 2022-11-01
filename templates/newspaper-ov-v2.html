@@ -25,17 +25,18 @@
             let min_height = 1000
             let news = $('.paper-news-ov');
             for (let i = 0; i < news.length; i++) {
-                console.log("news-" + i + "height: " + $(news[i]).height())
+                console.log("original news-" + i + "height: " + $(news[i]).height())
                 if ($(news[i]).height() < min_height) {
                     min_height = $(news[i]).height()
                 }
             }
+            min_height += 5
             for (let i = 0; i < news.length; i++) {
                 if ($(news[i]).height() >= min_height) {
                     $(news[i]).css("height", min_height + 2)
                     $(news[i]).css("overflow", 'hidden')
                 }
-                console.log("news-" + i + "height: " + $(news[i]).height())
+                console.log("news-" + i + " change to height: " + $(news[i]).height())
             }
             let bottom_news = $('#bottom-news')
             bottom_news.css("margin-top", 10)

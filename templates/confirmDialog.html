@@ -1,0 +1,48 @@
+<div class="wrap-dialog dialog-hide" >
+    <div class="dialog" id="dialog">
+        <div class="dialog-body">
+            <span class="dialog-message">You cannot go back to the news reading session after exit!</span>
+        </div>
+        <div class="dialog-footer">
+            <input type="button" class="dialog-btn" id="dialog-confirm" value="Exit" />
+            <input type="button" class="dialog-btn dialog-ml50" id="dialog-cancel" value="Stay" />
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        //自定義部分
+        window.confirm = function(message, yesCallBack, noCallBack) {
+
+            var message = message || "You cannot go back to the news reading session after exit!";
+
+            var choose=function(tag){
+                return document.querySelector(tag);
+            }
+            choose(".dialog-message").innerHTML = message;
+            // 显示遮罩和对话框
+            choose(".wrap-dialog").className = "wrap-dialog";
+            // 确定按钮
+
+            choose("#dialog").onclick= function(e){
+                if(e.target.className=="dialog-btn"){
+                    choose(".wrap-dialog").className = "wrap-dialog dialog-hide";
+                    yesCallBack();
+                }else if (e.target.className=="dialog-btn dialog-ml50"){
+                    choose(".wrap-dialog").className = "wrap-dialog dialog-hide";
+                    noCallBack();
+                }
+            };
+        }
+        $('#end-reading').click(function() {
+            function exitReading() {
+                window.open('https://ufl.qualtrics.com/jfe/form/SV_2a9EIBJAiWIDSU6?PROLIFIC_PID=uid', "_self")
+            }
+
+            function stayReading() {
+            }
+            confirm("You cannot go back to the news reading session after exit!？", exitReading, stayReading);
+        });
+    });
+</script>

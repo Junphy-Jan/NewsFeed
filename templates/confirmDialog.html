@@ -1,7 +1,7 @@
 <div class="wrap-dialog dialog-hide" >
     <div class="dialog" id="dialog">
         <div class="dialog-body">
-            <span class="dialog-message">You cannot go back to the news reading session after exit!</span>
+            <span class="dialog-message">You cannot go back to the news reading session after exit.</span>
         </div>
         <div class="dialog-footer">
             <input type="button" class="dialog-btn" id="dialog-confirm" value="Exit" />
@@ -15,7 +15,7 @@
         //自定義部分
         window.confirm = function(message, yesCallBack, noCallBack) {
 
-            var message = message || "You cannot go back to the news reading session after exit!";
+            var message = message || "You cannot go back to the news reading session after exit.";
 
             var choose=function(tag){
                 return document.querySelector(tag);
@@ -44,7 +44,7 @@
 
             function stayReading() {
             }
-            confirm("You cannot go back to the news reading session after exit!？", exitReading, stayReading);
+            confirm("You cannot go back to the news reading session after exit.", exitReading, stayReading);
         });
     });
 </script>

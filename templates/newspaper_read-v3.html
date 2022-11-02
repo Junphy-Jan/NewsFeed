@@ -100,7 +100,15 @@
             changeNewsHeight()
         }
         $(document).ready(function () {
-            changeNewsHeight()
+            changeNewsHeight();
+            var ua = navigator.userAgent.toLocaleLowerCase();
+            var browserType=null;
+            if (ua.match(/firefox/) != null) {
+            }else if (ua.match(/chrome/) != null) {
+                $("#end-reading-div").css("display", "unset");
+                $(".news-read-content").css("height", 0);
+
+            }
         })
 
         let timeOutFunctionId;
@@ -159,8 +167,10 @@
             {#document.getElementById("news-detail-content").innerHTML = id.children[1].textContent;#}
         }
     </script>
+    <div class="news-read-content clearfix">
         <div class="col-md-5 col-lg-5 col-xl-5" id="newspaper_page"
-             style="-webkit-transform: scale(0.80); -webkit-transform-origin-y: top; padding: 1rem 1rem 0 1rem;
+             style="-webkit-transform: scale(0.80); -webkit-transform-origin-y: top; -moz-transform-origin: top;
+  transform-origin: center top 0; padding: 1rem 1rem 0 1rem;
                     border: solid 1px; float: left; margin-top: 1rem; margin-left: 6%">
             <h4 style="margin: 0 0 1rem 0; text-align: center">Daily News</h4>
             <hr class="hr1" style="rgb(145 145 145);border-top-style: solid;;border-top-width: 1px;"/>
@@ -294,7 +304,10 @@
                 </div>
             </div>
         </div>
-    <button type="button" class="btn btn-secondary" id="end-reading" onchange="endReading()">Exit news reading session</button>
+    </div>
+    <div id="end-reading-div" style="justify-content: center; display: flex;">
+        <button type="button" class="btn btn-secondary" id="paper-end-reading">Exit news reading session</button>
+    </div>
 </div>
 
 </body>

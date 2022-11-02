@@ -74,14 +74,14 @@ def newspaper(uid):
 
     shuffle_idx = [i for i in range(len(all_paper_news_list))]
     random.shuffle(shuffle_idx)
-    if shuffle_idx[-1] == 2:
-        tmp = shuffle_idx[2]
-        shuffle_idx[2] = 2
-        shuffle_idx[-1] = tmp
-    if shuffle_idx[-2] == 2:
-        tmp = shuffle_idx[2]
-        shuffle_idx[2] = 2
-        shuffle_idx[-2] = tmp
+    # if shuffle_idx[-1] == 2:
+    #     tmp = shuffle_idx[2]
+    #     shuffle_idx[2] = 2
+    #     shuffle_idx[-1] = tmp
+    # if shuffle_idx[-2] == 2:
+    #     tmp = shuffle_idx[2]
+    #     shuffle_idx[2] = 2
+    #     shuffle_idx[-2] = tmp
     user_news_idx[uid] = shuffle_idx
     logger.info("user: {} visits newspaper version with news sequence: {}".format(escape(uid), shuffle_idx))
     news = [all_paper_news_list[i] for i in shuffle_idx]

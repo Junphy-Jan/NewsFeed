@@ -97,6 +97,12 @@ def read_news(news_idx, uid):
     return render_template('newspaper_read-v3.html', news_idx=news_idx, news_list=news_list)
 
 
+@app.route('/click')
+def click_data():
+    logger.info("点击事件|args:{}".format(request.args))
+    return "OK"
+
+
 @app.route('/web_news/<uid>')
 def web_news(uid):
     logger.info("request: {}".format(request.data))

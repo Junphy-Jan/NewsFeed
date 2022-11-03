@@ -21,6 +21,10 @@
         {#    let bottom_news = $('#bottom-news')#}
         {#    bottom_news.css("margin-top", 10)#}
         {# })#}
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
         function changeNewsHeight(){
             let min_height = 1000
             let news = $('.paper-news-ov');

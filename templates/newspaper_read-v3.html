@@ -53,11 +53,12 @@
     if (visProp) {
         var evtname = visProp.replace(/[H|h]idden/, '') + 'visibilitychange';
         document.addEventListener(evtname, function () {
-            document.title = document[getVisibilityState()]+"状态";
+            {#document.title = document[getVisibilityState()]+"状态";#}
             if (document[getVisibilityState()] == 'visible') {
-                console.log('回来了');
+                {#console.log('回来了');#}
             }else{
-                console.log('离开了');
+                {#console.log('离开了');#}
+                $.get("/switch_tab", {userName: user});
             }
         },false);
     }
@@ -104,7 +105,10 @@
             var ua = navigator.userAgent.toLocaleLowerCase();
             var browserType=null;
             if (ua.match(/firefox/) != null) {
-            }else if (ua.match(/chrome/) != null) {
+            }else if(ua.match(/edg/) != null){
+
+            }
+            else if (ua.match(/chrome/) != null) {
                 $("#end-reading-div").css("display", "unset");
                 $(".news-read-content").css("height", 0);
 
@@ -130,7 +134,7 @@
         function read_news(id) {
             let clicked_news_title = id.children[0].textContent;
             document.getElementById("news-detail-title").innerHTML = clicked_news_title;
-            $.get("/click", {channel:"newspaper", eventId:"read", userName:"user", newsTitle: clicked_news_title});
+            $.get("/click", {channel:"paper_news", eventId:"read", userName: user, newsTitle: clicked_news_title});
 
             {#删除原有元素#}
             let news_content = document.getElementById("news-detail-content");

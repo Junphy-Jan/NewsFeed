@@ -39,6 +39,7 @@
             function exitReading() {
                 const url = window.location.pathname;
                 const user = url.substring(url.lastIndexOf('/') + 1, url.length);
+                $.get("/leave", {channel:"web_news", userName: user});
                 window.open('https://ufl.qualtrics.com/jfe/form/SV_2a9EIBJAiWIDSU6?PROLIFIC_PID=' + user, "_self")
             }
 
@@ -50,6 +51,7 @@
             function exitReading() {
                 const url = window.location.pathname;
                 const user = url.substring(url.lastIndexOf('/') + 1, url.length);
+                $.get("/leave", {channel:"paper_news", userName: user});
                 window.open('https://ufl.qualtrics.com/jfe/form/SV_2a9EIBJAiWIDSU6?PROLIFIC_PID=' + user, "_self")
             }
 

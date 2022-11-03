@@ -74,7 +74,8 @@ class UserData:
                 "visitData": read_data,
                 "readCount": len(read_data),
                 "switch_tab": self.switch_tab,
-                "duration": int(self.end_time - self.start_time) if self.end_time is not None else None
+                "duration": int(self.end_time - self.start_time) if self.end_time is not None else None,
+                "leaveType": self.end_type
                 }
 
 

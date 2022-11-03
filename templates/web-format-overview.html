@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 
+
 {% block content %}
+    {% include 'confirmDialog.html' %}
+    <script>
+        document.getElementsByTagName("BODY")[0].onpageshow = function() {myFunction()};
+        function myFunction(event) {
+            $.post("/web_news_home", {username: user, cur_url: url});
+        }
+    </script>
     <div class="row" style="margin-top: 4%; width: 95%">
         <div class="col-md-5 offset-md-2 card bg-white web-news-left">
             <div class="card bg-white">
@@ -118,4 +126,5 @@
 
         </div>
     </div>
+    <button type="button" class="btn btn-secondary" id="end-reading" style="margin: 1% 45% 0 40%">Exit news reading session</button>
 {% endblock %}

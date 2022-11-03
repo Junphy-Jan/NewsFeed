@@ -99,14 +99,12 @@ def read_news(news_idx, uid):
     news_idx = int(news_idx)
     # news_idx = user_news_idx[uid][news_idx]
     news_list = [all_paper_news_list[i] for i in user_news_idx[uid]]
-    user_statistical_data[uid].update_click_data(user_news_idx[uid][news_idx])
+    user_statistical_data[uid].update_click_data(user_news_idx[uid][news_idx], channel=Channel.paper_news)
     return render_template('newspaper_read-v3.html', news_idx=news_idx, news_list=news_list)
 
 
 @app.route('/web_news/<uid>')
 def web_news(uid):
-    logger.info("request: {}".format(request.data))
-    logger.info("request.head: {}".format(dict(request.headers)))
     # global all_news_list
     global user_news_idx
     if uid in user_news_idx:
@@ -126,8 +124,15 @@ def web_news(uid):
 def read_web_news(news_idx, uid):
     news_idx = int(news_idx)
     news_list = [all_paper_news_list[i] for i in user_news_idx[uid]]
-    user_statistical_data[uid].update_click_data(user_news_idx[uid][news_idx])
+    user_statistical_data[uid].update_click_data(user_news_idx[uid][news_idx], channel=Channel.web_news)
     return render_template('web-format-read.html', news=news_list[news_idx])
+
+
+@app.route('/web_news_home', methods=['POST'])
+def back2_web_news_home():
+    uid = request.form.get("username")
+    user_statistical_data[uid].update_web_news_end_read()
+    return "OK"
 
 
 @app.route('/click')
@@ -136,7 +141,7 @@ def click_data():
     logger.info("点击事件|args:{}".format(data))
     for i in range(len(all_paper_news_list)):
         if all_paper_news_list[i]["title"] == data["newsTitle"]:
-            user_statistical_data[data["userName"]].update_click_data(i)
+            user_statistical_data[data["userName"]].update_click_data(i, channel=Channel.paper_news)
     return "OK"
 
 

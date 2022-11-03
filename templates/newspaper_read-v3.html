@@ -16,7 +16,6 @@
 </head>
 <body>
 <script>
-
     const url = window.location.pathname;
     const user = url.substring(url.lastIndexOf('/') + 1, url.length);
     // 对document.hidden做前缀处理
@@ -56,9 +55,9 @@
             {#document.title = document[getVisibilityState()]+"状态";#}
             if (document[getVisibilityState()] == 'visible') {
                 {#console.log('回来了');#}
+                $.get("/switch_tab", {userName: user});
             }else{
                 {#console.log('离开了');#}
-                $.get("/switch_tab", {userName: user});
             }
         },false);
     }
@@ -109,7 +108,8 @@
 
             }
             else if (ua.match(/chrome/) != null) {
-                $("#end-reading-div").css("display", "unset");
+                $("#end-reading-div").css("display", "block");
+                $("#end-reading-div").css("margin-left", "40%");
                 $(".news-read-content").css("height", 0);
 
             }

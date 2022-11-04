@@ -4,8 +4,17 @@
 {% block content %}
     {% include 'confirmDialog.html' %}
     <script>
+
         document.getElementsByTagName("BODY")[0].onpageshow = function() {myFunction()};
         function myFunction(event) {
+            if(sessionStorage.getItem("isReload")){
+                {#alert("页面被刷新");#}
+                $(".news-overview-btn").css("visibility", "visible");
+            }else{
+                {#alert("首次被加载");#}
+                $(".news-overview-btn").css("visibility", "hidden");
+                sessionStorage.setItem("isReload", true);
+            }
             $.post("/web_news_home", {username: user, cur_url: url});
         }
     </script>
@@ -126,5 +135,5 @@
 
         </div>
     </div>
-    <button type="button" class="btn btn-secondary" id="end-reading" style="margin: 1% 45% 0 40%">Exit news reading session</button>
+    <button type="button" class="btn btn-secondary news-overview-btn" id="end-reading" style="margin: 1% 45% 0 40%">Exit news reading session</button>
 {% endblock %}

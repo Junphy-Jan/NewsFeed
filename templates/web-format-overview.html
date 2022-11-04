@@ -7,13 +7,13 @@
 
         document.getElementsByTagName("BODY")[0].onpageshow = function() {myFunction()};
         function myFunction(event) {
-            if(sessionStorage.getItem("isReload")){
+            if(sessionStorage.getItem("username") === user){
                 {#alert("页面被刷新");#}
                 $(".news-overview-btn").css("visibility", "visible");
             }else{
                 {#alert("首次被加载");#}
                 $(".news-overview-btn").css("visibility", "hidden");
-                sessionStorage.setItem("isReload", true);
+                sessionStorage.setItem("username", user);
             }
             $.post("/web_news_home", {username: user, cur_url: url});
         }

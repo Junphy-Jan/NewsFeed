@@ -134,7 +134,14 @@
         });
 
         function read_news(id) {
-            let clicked_news_title = id.children[0].textContent;
+            let clicked_news_title = ""
+            if (id.parentElement.parentElement.className.includes("news-6-ov-content")){
+                clicked_news_title = document.getElementsByClassName("news-6-ov-title")[0].children[0].children[0].children[0].innerHTML;
+            }else if(id.parentElement.parentElement.className.includes("news-7-ov-content")){
+                clicked_news_title = document.getElementsByClassName("news-7-ov-title")[0].children[0].children[0].children[0].innerHTML
+            }else {
+                clicked_news_title = id.children[0].textContent;
+            }
             document.getElementById("news-detail-title").innerHTML = clicked_news_title;
             $.get("/click", {channel:"paper_news", eventId:"read", userName: user, newsTitle: clicked_news_title});
 
@@ -276,24 +283,28 @@
             <div class="row">
                 <div class="col-md-6 col-lg-6">
                     <div class="card bg-white news-6-ov-content">
-                        <div class="card-body">
+                        <a href="#">
+                        <div class="card-body"  onclick="read_news(this)">
                                 <div class="paper-news-ov-lines" id="news-6-content-lines">
                                     {% for line in news_list[6].lines %}
                                         <p class="paper-news-ov-line">{{ line }}</p>
                                     {% endfor %}
                                 </div>
                         </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6">
                     <div class="card bg-white news-7-ov-content">
-                        <div class="card-body">
+                        <a href="#">
+                        <div class="card-body"  onclick="read_news(this)">
                                 <div class="paper-news-ov-lines" id="news-7-content-lines">
                                     {% for line in news_list[7].lines %}
                                         <p class="paper-news-ov-line">{{ line }}</p>
                                     {% endfor %}
                                 </div>
                         </div>
+                        </a>
                     </div>
                 </div>
             </div>

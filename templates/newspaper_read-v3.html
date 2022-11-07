@@ -70,6 +70,9 @@
         socket.volatile.emit("heartbeat", {username: user, cur_url: url});
         }, 1500
     );
+
+
+
 </script>
 {% include 'confirmDialog.html' %}
 <div id="content">
@@ -115,6 +118,19 @@
                 $(".news-read-content").css("height", 0);
 
             }
+            $(".news-6-ov-content").hover(function () {
+                $(".news-6-ov-content").css("color", "unset")
+                $(".news-6-ov-title").css("color", "#007bff")
+            }, function (){
+                $(".news-6-ov-title").css("color", "unset")
+            })
+
+            $(".news-7-ov-content").hover(function () {
+                $(".news-7-ov-content").css("color", "unset")
+                $(".news-7-ov-title").css("color", "#007bff")
+            }, function (){
+                $(".news-7-ov-title").css("color", "unset")
+            })
         })
 
         let timeOutFunctionId;
@@ -132,7 +148,6 @@
             // clearTimeOut to reset the timer
             timeOutFunctionId = setTimeout(resizeNewsHeight, 50);
         });
-
         function read_news(id) {
             let clicked_news_title = ""
             if (id.parentElement.parentElement.className.includes("news-6-ov-content")){

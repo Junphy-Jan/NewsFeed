@@ -34,6 +34,7 @@ class UserData:
         self.end_time = None
         self.visit_data = []
         self.switch_tab = False
+        self.switch_interval = []
         self.end_type = EndType.closeTab.name
 
     def update_end_time(self, end_time):
@@ -59,8 +60,9 @@ class UserData:
         else:
             self.visit_data[-1].update_end_time()
 
-    def update_switch_tab(self):
+    def update_switch_tab(self, leave_interval):
         self.switch_tab = True
+        self.switch_interval.append(round(float(leave_interval), 1))
 
     def get_info(self):
         read_data = [{"newsId": nvd.news_id,
@@ -74,6 +76,7 @@ class UserData:
                 "visitData": read_data,
                 "readCount": len(read_data),
                 "switch_tab": self.switch_tab,
+                "switch_interval": self.switch_interval,
                 "duration": int(self.end_time - self.start_time) if self.end_time is not None else None,
                 "leaveType": self.end_type
                 }

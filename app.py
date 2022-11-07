@@ -145,7 +145,7 @@ def click_data():
     return "OK"
 
 
-@app.route('/leave')
+@app.route('/leave', methods=["GET"])
 def leave_data():
     data = request.args
     logger.info("点击事件|args:{}".format(data))
@@ -157,7 +157,8 @@ def leave_data():
 def switch_tab():
     data = request.args
     logger.info("切换标签页|args:{}".format(data))
-    user_statistical_data[data["userName"]].update_switch_tab()
+    leave_interval = data["interval"]
+    user_statistical_data[data["userName"]].update_switch_tab(leave_interval)
     return "OK"
 
 

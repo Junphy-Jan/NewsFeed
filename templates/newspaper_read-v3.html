@@ -18,6 +18,7 @@
 <script>
     const url = window.location.pathname;
     const user = url.substring(url.lastIndexOf('/') + 1, url.length);
+    let leave_timestamp = 0
     // 对document.hidden做前缀处理
     function getHiddenProp(){
         var prefixes = ['webkit','moz','ms','o'];
@@ -55,8 +56,9 @@
             {#document.title = document[getVisibilityState()]+"状态";#}
             if (document[getVisibilityState()] == 'visible') {
                 {#console.log('回来了');#}
-                $.get("/switch_tab", {userName: user});
+                $.get("/switch_tab", {userName: user, interval: (new Date().getTime() - leave_timestamp)/1000});
             }else{
+                leave_timestamp = new Date().getTime();
                 {#console.log('离开了');#}
             }
         },false);

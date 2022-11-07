@@ -11,6 +11,13 @@
 </div>
 
 <script>
+    const sleep = function (time) {
+        const startTime = new Date().getTime() + parseInt(time, 10);
+        while (new Date().getTime() < startTime) {
+        }
+    };
+
+
     $(document).ready(function() {
         //自定義部分
         window.confirm = function(message, yesCallBack, noCallBack) {
@@ -40,6 +47,7 @@
                 const url = window.location.pathname;
                 const user = url.substring(url.lastIndexOf('/') + 1, url.length);
                 $.get("/leave", {channel:"web_news", userName: user});
+                sleep(1000);
                 window.open('https://ufl.qualtrics.com/jfe/form/SV_2a9EIBJAiWIDSU6?PROLIFIC_PID=' + user, "_self")
             }
 
@@ -52,6 +60,7 @@
                 const url = window.location.pathname;
                 const user = url.substring(url.lastIndexOf('/') + 1, url.length);
                 $.get("/leave", {channel:"paper_news", userName: user});
+                sleep(1000);
                 window.open('https://ufl.qualtrics.com/jfe/form/SV_2a9EIBJAiWIDSU6?PROLIFIC_PID=' + user, "_self")
             }
 

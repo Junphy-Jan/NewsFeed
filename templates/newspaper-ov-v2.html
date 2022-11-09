@@ -85,6 +85,51 @@
             // clearTimeOut to reset the timer
             timeOutFunctionId = setTimeout(resizeNewsHeight, 50);
         });
+        let leave_timestamp = 0
+        // 对document.hidden做前缀处理
+        function getHiddenProp(){
+            var prefixes = ['webkit','moz','ms','o'];
+
+            // if 'hidden' is natively supported just return it
+            if ('hidden' in document) return 'hidden';
+
+            // otherwise loop over all the known prefixes until we find one
+            for (var i = 0; i < prefixes.length; i++){
+                if ((prefixes[i] + 'Hidden') in document)
+                    return prefixes[i] + 'Hidden';
+            }
+
+            // otherwise it's not supported
+            return null;
+        };
+
+        // 获取document.visibilityState属性
+        function getVisibilityState() {
+            var prefixes = ['webkit', 'moz', 'ms', 'o'];
+            if ('visibilityState' in document) return 'visibilityState';
+            for (var i = 0; i < prefixes.length; i++) {
+                if ((prefixes[i] + 'VisibilityState') in document)
+                    return prefixes[i] + 'VisibilityState';
+            }
+            // otherwise it's not supported
+            return null;
+        };
+
+        // 给document添加事件
+        var visProp = getHiddenProp();
+        if (visProp) {
+            var evtname = visProp.replace(/[H|h]idden/, '') + 'visibilitychange';
+            document.addEventListener(evtname, function () {
+                {#document.title = document[getVisibilityState()]+"状态";#}
+                if (document[getVisibilityState()] == 'visible') {
+                    {#console.log('回来了');#}
+                    $.get("/switch_tab", {userName: user, interval: (new Date().getTime() - leave_timestamp)/1000});
+                }else{
+                    leave_timestamp = new Date().getTime();
+                    {#console.log('离开了');#}
+                }
+            },false);
+        }
     </script>
     <div class="newspaper-overview col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 offset-md-2 offset-sm-1 offset-lg-3 offset-xl-3"
          style="margin-top: 2rem">

@@ -6,6 +6,13 @@
     <script>
         // 对document.hidden做前缀处理
         let leave_timestamp = 0
+        let leave_with_click = false
+
+        function clickLink() {
+            leave_with_click = true
+            // console.log("从链接跳转的hidden")
+        }
+
         function getHiddenProp(){
             var prefixes = ['webkit','moz','ms','o'];
 
@@ -41,11 +48,19 @@
             document.addEventListener(evtname, function () {
                 {#document.title = document[getVisibilityState()]+"状态";#}
                 if (document[getVisibilityState()] == 'visible') {
-                    {#console.log('回来了');#}
-                    $.get("/switch_tab", {userName: user, interval: (new Date().getTime() - leave_timestamp)/1000});
+                    console.log('回来了');
+                    if(!leave_with_click && leave_timestamp !== 0) {
+                        $.get("/switch_tab", {
+                            userName: user,
+                            interval: (new Date().getTime() - leave_timestamp) / 1000
+                        });
+                    }
+                    leave_with_click = false
+                    {#$.post('/visibility_change', {userName: user, visibility: true})#}
                 }else{
-                    {#console.log('离开了');#}
+                    console.log('离开了');
                     leave_timestamp = new Date().getTime();
+                    {#$.post('/visibility_change', {userName: user, visibility: false})#}
                 }
             },false);
         };
@@ -64,8 +79,8 @@
     </script>
     <div class="row" style="margin-top: 4%; width: 95%">
         <div class="col-md-5 offset-md-2 card bg-white web-news-left">
-            <div class="card bg-white">
-                <a href="web_news_read/0/{{ uid }}">
+            <div class="card bg-white" oncontextmenu="return false">
+                <a href="web_news_read/0/{{ uid }}" onclick="clickLink()">
                     <div class="card-body">
                         <h4 class="web-news-title">{{ news_list[0].title }}</h4>
                         {% for line in news_list[0].lines %}
@@ -75,7 +90,7 @@
                 </a>
             </div>
             <hr class="hr1"/>
-            <div class="card bg-white">
+            <div class="card bg-white" oncontextmenu="return false">
                 <a href="web_news_read/1/{{ uid }}">
                     <div class="card-body">
                         <h4 class="web-news-title">{{ news_list[1].title }}</h4>
@@ -86,7 +101,7 @@
                 </a>
             </div>
             <hr class="hr2"/>
-            <div class="card bg-white">
+            <div class="card bg-white" oncontextmenu="return false">
                 <a href="web_news_read/2/{{ uid }}">
                     <div class="card-body">
                         <h4 class="web-news-title">{{ news_list[2].title }}</h4>
@@ -99,7 +114,7 @@
             <hr class="hr3"/>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="card bg-white h-100">
+                    <div class="card bg-white h-100" oncontextmenu="return false">
                         <a href="web_news_read/3/{{ uid }}">
                             <div class="card-body">
                                 <h4 class="web-news-title">{{ news_list[3].title }}</h4>
@@ -109,7 +124,7 @@
                 </div>
                 <div style="width: 1px; background: lightgray; margin-top: 8%; height: 2rem"></div>
                 <div class="col-md-6">
-                    <div class="card bg-white h-100">
+                    <div class="card bg-white h-100" oncontextmenu="return false">
                         <a href="web_news_read/4/{{ uid }}">
                             <div class="card-body">
                                 <h4 class="web-news-title">{{ news_list[4].title }}</h4>
@@ -120,7 +135,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="card bg-white h-100">
+                    <div class="card bg-white h-100" oncontextmenu="return false">
                         <a href="web_news_read/3/{{ uid }}">
                             <div class="card-body">
                                 {% for line in news_list[3].lines %}
@@ -132,7 +147,7 @@
                 </div>
                 <div style="width: 1px; background: lightgray; margin-bottom: 8%; height: 2rem"></div>
                 <div class="col-md-6">
-                    <div class="card bg-white h-100">
+                    <div class="card bg-white h-100" oncontextmenu="return false">
                         <a href="web_news_read/4/{{ uid }}">
                             <div class="card-body">
                                 {% for line in news_list[4].lines %}
@@ -146,7 +161,7 @@
         </div>
         <div style="width: 1px; background: lightgray;"></div>
         <div class="col-md-3">
-            <div class="card bg-white web-news-right">
+            <div class="card bg-white web-news-right" oncontextmenu="return false">
                 <a href="web_news_read/5/{{ uid }}">
                     <div class="card-body">
                         <h4 class="web-news-title-right">{{ news_list[5].title }}</h4>
@@ -156,7 +171,7 @@
                     </div>
                 </a>
             </div>
-            <div class="card bg-white web-news-right">
+            <div class="card bg-white web-news-right" oncontextmenu="return false">
                 <a href="web_news_read/6/{{ uid }}">
                     <div class="card-body">
                         <h4 class="web-news-title-right">{{ news_list[6].title }}</h4>
@@ -166,7 +181,7 @@
                     </div>
                 </a>
             </div>
-            <div class="card bg-white web-news-right">
+            <div class="card bg-white web-news-right" oncontextmenu="return false">
                 <a href="web_news_read/7/{{ uid }}">
                     <div class="card-body">
                         <h4 class="web-news-title-right">{{ news_list[7].title }}</h4>

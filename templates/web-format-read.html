@@ -40,11 +40,18 @@
             document.addEventListener(evtname, function () {
                 {#document.title = document[getVisibilityState()]+"状态";#}
                 if (document[getVisibilityState()] === 'visible') {
-                    {#console.log('回来了');#}
-                    $.get("/switch_tab", {userName: user, interval: (new Date().getTime() - leave_timestamp)/1000});
+                    if (leave_timestamp !== 0) {
+                        {#  console.log('回来了'); #}
+                        $.get("/switch_tab", {
+                            userName: user,
+                            interval: (new Date().getTime() - leave_timestamp) / 1000
+                        });
+                    }
+                    {#$.post('/visibility_change', {userName: user, visibility: true})#}
                 }else{
-                    {#console.log('离开了');#}
+                    {# console.log('离开了'); #}
                     leave_timestamp = new Date().getTime();
+                    {#$.post('/visibility_change', {userName: user, visibility: false})#}
                 }
             },false);
         };

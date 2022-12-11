@@ -16,6 +16,12 @@
 </head>
 <body>
 <script>
+    $(document).on('mousedown',function(Event){
+        if (1 === Event.button){
+            Event.preventDefault();
+            window.location = '';
+        }}
+    )
     const url = window.location.pathname;
     const user = url.substring(url.lastIndexOf('/') + 1, url.length);
     let leave_timestamp = 0

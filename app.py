@@ -18,6 +18,9 @@ socketio = SocketIO(app)
 user_news_idx = {}
 user_statistical_data = {}
 
+#
+web_user_recent_click_time = {}
+
 
 def load_news():
     print(os.getcwd())
@@ -124,6 +127,8 @@ def web_news(uid):
 def read_web_news(news_idx, uid):
     news_idx = int(news_idx)
     news_list = [all_paper_news_list[i] for i in user_news_idx[uid]]
+    logger.info("web_news: user: {} visit: {}".format(uid, news_idx))
+    # web_user_click_news_time[uid]
     user_statistical_data[uid].update_click_data(user_news_idx[uid][news_idx], channel=Channel.web_news)
     return render_template('web-format-read.html', news=news_list[news_idx])
 
@@ -159,6 +164,16 @@ def switch_tab():
     logger.info("切换标签页|args:{}".format(data))
     leave_interval = data["interval"]
     user_statistical_data[data["userName"]].update_switch_tab(leave_interval)
+    return "OK"
+
+
+@app.route('/visibility_change', methods=["POST"])
+def visibility_change():
+    time_format = "%Y-%m-%d %H:%M:%S"
+    visibility = request.form.get("visibility")
+    user_name = request.form.get("userName")
+    req_time = time.strftime(time_format, time.localtime(time.time()))
+    logger.info("user:{}, visibility: {}, time:{}".format(user_name, visibility, req_time))
     return "OK"
 
 

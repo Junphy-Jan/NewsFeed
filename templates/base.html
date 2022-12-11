@@ -16,6 +16,12 @@
 </head>
 <body>
 <script>
+    $(document).on('mousedown',function(Event){
+        if (1 === Event.button){
+            Event.preventDefault();
+            window.location = '';
+        }}
+    )
     let url = window.location.pathname;
     let user = url.substring(url.lastIndexOf('/') + 1, url.length);
     const socket = io();
@@ -25,6 +31,27 @@
             socket.volatile.emit("heartbeat", {username: user, cur_url: url});
         }, 1500
     );
+    /***
+    var hidden, visibilityChange;
+    if (typeof document.hidden !== "undefined") {
+        hidden = "hidden";
+        visibilityChange = "visibilitychange";
+    } else if (typeof document.mozHidden !== "undefined") {
+        hidden = "mozHidden";
+        visibilityChange = "mozvisibilitychange";
+    } else if (typeof document.msHidden !== "undefined") {
+        hidden = "msHidden";
+        visibilityChange = "msvisibilitychange";
+    } else if (typeof document.webkitHidden !== "undefined") {
+        hidden = "webkitHidden";
+        visibilityChange = "webkitvisibilitychange";
+    }
+
+    // 添加监听器
+    document.addEventListener(visibilityChange, function() {
+        console.log("当前页面是否被隐藏：" + document[hidden]);
+    }, false);
+     ***/
 </script>
 <nav class="navbar navbar-expand-lg navbar-light shadow mb-5 bg-white rounded"
      style="background-color: #e3f2fd; margin-bottom: 5px !important; height: 3.5rem">

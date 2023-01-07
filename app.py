@@ -132,6 +132,14 @@ def read_web_news(news_idx, uid):
     user_statistical_data[uid].update_click_data(user_news_idx[uid][news_idx], channel=Channel.web_news)
     return render_template('web-format-read.html', news=news_list[news_idx])
 
+@app.route('/test')
+def test():
+    return render_template('test-lifecycle.html')
+
+@app.route('/test2')
+def test2():
+    return render_template('test-lifecycle2.html')
+
 
 @app.route('/web_news_home', methods=['POST'])
 def back2_web_news_home():

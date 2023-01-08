@@ -151,7 +151,7 @@ def back2_web_news_home():
 @app.route('/click')
 def click_data():
     data = request.args
-    logger.info("点击事件|args:{}".format(data))
+    logger.info("点击事件|url: {}, args:{}".format("/click", data))
     for i in range(len(all_paper_news_list)):
         if all_paper_news_list[i]["title"] == data["newsTitle"]:
             user_statistical_data[data["userName"]].update_click_data(i, channel=Channel.paper_news)
@@ -161,7 +161,7 @@ def click_data():
 @app.route('/leave', methods=["GET"])
 def leave_data():
     data = request.args
-    logger.info("点击事件|args:{}".format(data))
+    logger.info("点击事件|url: {}, args:{}".format("/leave", data))
     user_statistical_data[data["userName"]].update_end_time(time.time())
     return "OK"
 

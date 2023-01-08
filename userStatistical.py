@@ -1,7 +1,7 @@
 import enum
 import time
 from enum import Enum
-
+from newsFeedUtils.loggerHelper import logger
 time_format = "%Y-%m-%d %H:%M:%S"
 
 
@@ -55,6 +55,7 @@ class UserData:
             self.visit_data.append(nvd)
 
     def update_web_news_end_read(self):
+        logger.info("update_web_news_end_read|self.visit_data:{}".format(self.visit_data))
         if len(self.visit_data) == 0:
             pass
         else:

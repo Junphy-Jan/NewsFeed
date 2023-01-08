@@ -169,7 +169,7 @@ p.news-detail-lines{
     /*color: transparent;*/
     /*text-shadow: 0 0 3px #00000063;*/
     font-size: 95%;
-    line-height: 140%;
+    line-height: 120%;
     -webkit-filter: blur(1.3px);
     -ms-filter: blur(1.3px);
     filter: blur(1.3px);
